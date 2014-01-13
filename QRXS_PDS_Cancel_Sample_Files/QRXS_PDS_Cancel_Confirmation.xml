@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pdsConfirmation xmlns="http://www.npdb-hipdb.hrsa.gov/PdsResponse">
+    <submitter xmlns="">
+        <entityDBID>429700000093792</entityDBID>
+        <vendorID>1234567</vendorID>
+    </submitter>
+    <submissionFilename xmlns="">qrxs_pds_cancel_submission.xml</submissionFilename>
+    <certification xmlns="">
+        <name>JOHN SMITH</name>
+        <title>MEDICAL STAFF COORDINATOR</title>
+        <phone>
+            <number>123456789012345</number>
+        </phone>
+        <date>2009-02-12-05:00</date>
+    </certification>
+    <batchStatus xmlns="">
+        <dcn>7950000054903661</dcn>
+        <processDate>2009-03-19-04:00</processDate>
+        <successfullyProcessed>true</successfullyProcessed>
+    </batchStatus>
+    <subjectConfirmation xmlns="">
+        <accepted>true</accepted>
+        <dcn>7950000054903661</dcn>
+        <id>
+            <databankSubjectID>300000000257164</databankSubjectID>
+        </id>
+    </subjectConfirmation>
+</pdsConfirmation>
+

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pdsResponse xmlns="http://www.npdb-hipdb.hrsa.gov/PdsResponse">
+    <submitter xmlns="">
+        <entityDBID>800000000000000</entityDBID>
+        <vendorID>1234567</vendorID>
+    </submitter>
+    <submissionFilename xmlns="">qrxs_pds_status_submission.xml</submissionFilename>
+    <certification xmlns="">
+        <name>JOHN SMITH</name>
+        <title>MEDICAL STAFF COORDINATOR</title>
+        <phone>
+            <number>123456789012345</number>
+        </phone>
+        <date>2009-03-06-05:00</date>
+    </certification>
+    <batchStatus xmlns="">
+        <dcn>7950000054903658</dcn>
+        <processDate>2009-03-19-04:00</processDate>
+        <successfullyProcessed>true</successfullyProcessed>
+    </batchStatus>
+    <pdsSubjectResponse xmlns="">
+        <status>
+            <dcn>7950000054903658</dcn>
+            <processDate>2009-03-19-04:00</processDate>
+            <successfullyProcessed>true</successfullyProcessed>
+        </status>
+        <individual>
+            <name>
+                <last>NO</last>
+                <first>MATCH</first>
+                <middle>THREE</middle>
+                <suffix>JR</suffix>
+            </name>
+            <gender>M</gender>
+            <birthdate>1933-06-01-04:00</birthdate>
+            <workAddress>
+                <address>1</address>
+                <address2>2</address2>
+                <city>3</city>
+                <state>OH</state>
+                <zip>45458</zip>
+            </workAddress>
+            <ssn>*****8888</ssn>
+            <professionalSchool>
+                <school>SCHOOL</school>
+                <graduationYear>2000</graduationYear>
+            </professionalSchool>
+            <occupationAndLicensure>
+                <number>ASSDFSA23</number>
+                <state>OH</state>
+                <field>010</field>
+                <specialty>03</specialty>
+            </occupationAndLicensure>
+            <department>TES</department>
+            <databankSubjectID>300000000257161</databankSubjectID>
+        </individual>
+        <monitoredUnder>
+            <titleIV>true</titleIV>
+            <section1921>false</section1921>
+            <section1128e>true</section1128e>
+        </monitoredUnder>
+        <enrollmentStatus>
+            <dataBank>N</dataBank>
+            <status>E</status>
+            <startDate>2009-03-18-04:00</startDate>
+            <endDate>2010-03-31-04:00</endDate>
+        </enrollmentStatus>
+        <enrollmentStatus>
+            <dataBank>H</dataBank>
+            <status>E</status>
+            <startDate>2009-03-18-04:00</startDate>
+            <endDate>2010-03-31-04:00</endDate>
+        </enrollmentStatus>
+        <reportsIncluded>true</reportsIncluded>
+    </pdsSubjectResponse>
+</pdsResponse>
+

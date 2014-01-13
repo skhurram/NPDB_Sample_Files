@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pdsResponse xmlns="http://www.npdb-hipdb.hrsa.gov/PdsResponse">
+    <submitter xmlns="">
+        <entityDBID>800000000000000</entityDBID>
+        <vendorID>1234567</vendorID>
+    </submitter>
+    <submissionFilename xmlns="">qrxs_pds_status_submission.xml</submissionFilename>
+    <certification xmlns="">
+        <name>JOHN SMITH</name>
+        <title>MEDICAL STAFF COORDINATOR</title>
+        <phone>
+            <number>123456789012345</number>
+        </phone>
+        <date>2009-03-06-05:00</date>
+    </certification>
+    <batchStatus xmlns="">
+        <dcn>7950000054903660</dcn>
+        <processDate>2009-03-19-04:00</processDate>
+        <successfullyProcessed>true</successfullyProcessed>
+    </batchStatus>
+    <pdsSubjectResponse xmlns="">
+        <status>
+            <dcn>7950000054903660</dcn>
+            <processDate>2009-03-19-04:00</processDate>
+            <successfullyProcessed>true</successfullyProcessed>
+        </status>
+        <individual>
+            <name>
+                <last>PARROTT</last>
+                <first>CHARLES</first>
+                <suffix>JR</suffix>
+            </name>
+            <gender>M</gender>
+            <birthdate>1955-08-11-04:00</birthdate>
+            <workAddress>
+                <address>1</address>
+                <address2>2</address2>
+                <city>3</city>
+                <state>OH</state>
+                <zip>45458</zip>
+            </workAddress>
+            <professionalSchool>
+                <school>TEST UNIVERSITY</school>
+                <graduationYear>1988</graduationYear>
+            </professionalSchool>
+            <occupationAndLicensure>
+                <number>1234567</number>
+                <state>WA</state>
+                <field>020</field>
+            </occupationAndLicensure>
+            <subjectID>parrot1</subjectID>
+            <department>TES</department>
+            <databankSubjectID>300000000257162</databankSubjectID>
+        </individual>
+        <monitoredUnder>
+            <titleIV>true</titleIV>
+            <section1921>false</section1921>
+            <section1128e>true</section1128e>
+        </monitoredUnder>
+        <enrollmentStatus>
+            <dataBank>N</dataBank>
+            <status>E</status>
+            <startDate>2009-03-18-04:00</startDate>
+            <endDate>2010-03-31-04:00</endDate>
+        </enrollmentStatus>
+        <enrollmentStatus>
+            <dataBank>H</dataBank>
+            <status>E</status>
+            <startDate>2009-03-18-04:00</startDate>
+            <endDate>2010-03-31-04:00</endDate>
+        </enrollmentStatus>
+        <reportsIncluded>true</reportsIncluded>
+        <report>
+            <contact>
+                <entityName>PRO TEST</entityName>
+                <officeOrName>ALLEN GEORGE</officeOrName>
+                <titleOrDept>CONSULTANT</titleOrDept>
+                <phone>
+                    <number>1234445555</number>
+                </phone>
+                <address>
+                    <address>4295 UNIVERSITY ROAD</address>
+                    <city>SEATTLE</city>
+                    <state>WA</state>
+                    <zip>12345</zip>
+                    <zip4>1111</zip4>
+                </address>
+            </contact>
+            <latestContact>
+                <entityStatus>A</entityStatus>
+                <entityName>INSURANCE COMPANY</entityName>
+                <address>
+                    <address>100 HERE PLACE</address>
+                    <address2>SUITE 320</address2>
+                    <city>FORT WORTH</city>
+                    <state>TX</state>
+                    <zip>12345</zip>
+                </address>
+                <lastUpdateDate>2006-05-02-04:00</lastUpdateDate>
+            </latestContact>
+            <reportData>
+                <reportDCN>7950033650555551</reportDCN>
+                <transaction>I</transaction>
+                <originalSubmitDate>1993-10-02-04:00</originalSubmitDate>
+                <recentChangeDate>1993-10-02-04:00</recentChangeDate>
+                <npdb>
+                    <maintainedIn>true</maintainedIn>
+                    <titleIV>true</titleIV>
+                    <section1921>false</section1921>
+                </npdb>
+                <hipdb>
+                    <maintainedIn>false</maintainedIn>
+                    <section1128E>false</section1128E>
+                </hipdb>
+                <maintainedUnder>
+                    <statute>IV</statute>
+                </maintainedUnder>
+            </reportData>
+            <individual>
+                <name>
+                    <last>PARROTT</last>
+                    <first>CHARLES</first>
+                    <middle>E.</middle>
+                </name>
+                <gender>U</gender>
+                <birthdate>1955-08-11-04:00</birthdate>
+                <organizationName>PARROTT</organizationName>
+                <workAddress>
+                    <address>23850 MAIN ST</address>
+                    <city>SEATTLE</city>
+                    <state>WA</state>
+                    <zip>12345</zip>
+                </workAddress>
+                <professionalSchool>
+                    <school>TEST UNIVERSITY</school>
+                    <graduationYear>1988</graduationYear>
+                </professionalSchool>
+                <occupationAndLicensure>
+                    <number>1234567</number>
+                    <state>WA</state>
+                    <field>020</field>
+                </occupationAndLicensure>
+                <deceasedDate>
+                    <isDeceased>N</isDeceased>
+                </deceasedDate>
+            </individual>
+            <informationReported>
+                <legacyMMPR>
+                    <relationshipOfEntity>I</relationshipOfEntity>
+                    <actOrOmission>
+                        <code>010</code>
+                        <date>1992-10-31-05:00</date>
+                    </actOrOmission>
+                    <actOrOmission>
+                        <code>050</code>
+                        <date>1992-11-12-05:00</date>
+                    </actOrOmission>
+                    <paymentDate>1994-06-30-04:00</paymentDate>
+                    <paymentForThisPractitioner>197000.00</paymentForThisPractitioner>
+                    <paymentType>S</paymentType>
+                    <numberPractitioners>1</numberPractitioners>
+                    <paymentResultOf>S</paymentResultOf>
+                    <adjudicativeBodyCaseNumber>91120411NH</adjudicativeBodyCaseNumber>
+                    <actOrOmissionDesc>FAILURE TO DIAGNOSE AND TREAT.</actOrOmissionDesc>
+                    <judgmentOrSettlementDesc>TOTAL AMOUNT OF SETTLEMENT $1,000.</judgmentOrSettlementDesc>
+                </legacyMMPR>
+            </informationReported>
+            <statement>
+                <disputeStatus>N</disputeStatus>
+            </statement>
+        </report>
+        <report>
+            <contact>
+                <entityName>PRO TEST</entityName>
+                <officeOrName>ALLEN GEORGE</officeOrName>
+                <titleOrDept>CONSULTANT</titleOrDept>
+                <phone>
+                    <number>1234445555</number>
+                </phone>
+                <address>
+                    <address>4295 UNIVERSITY ROAD</address>
+                    <city>SEATTLE</city>
+                    <state>WA</state>
+                    <zip>12345</zip>
+                    <zip4>1111</zip4>
+                </address>
+            </contact>
+            <latestContact>
+                <entityStatus>A</entityStatus>
+                <entityName>INSURANCE COMPANY</entityName>
+                <address>
+                    <address>100 HERE PLACE</address>
+                    <address2>SUITE 320</address2>
+                    <city>FORT WORTH</city>
+                    <state>TX</state>
+                    <zip>12345</zip>
+                </address>
+                <lastUpdateDate>2006-05-02-04:00</lastUpdateDate>
+            </latestContact>
+            <reportData>
+                <reportDCN>7950033650555550</reportDCN>
+                <transaction>I</transaction>
+                <originalSubmitDate>1996-02-15-05:00</originalSubmitDate>
+                <recentChangeDate>1996-02-15-05:00</recentChangeDate>
+                <npdb>
+                    <maintainedIn>true</maintainedIn>
+                    <titleIV>true</titleIV>
+                    <section1921>false</section1921>
+                </npdb>
+                <hipdb>
+                    <maintainedIn>false</maintainedIn>
+                    <section1128E>false</section1128E>
+                </hipdb>
+                <maintainedUnder>
+                    <statute>IV</statute>
+                </maintainedUnder>
+            </reportData>
+            <individual>
+                <name>
+                    <last>PARROTT</last>
+                    <first>CHARLES</first>
+                    <middle>E.</middle>
+                </name>
+                <gender>U</gender>
+                <birthdate>1955-08-11-04:00</birthdate>
+                <organizationName>PARROTT</organizationName>
+                <workAddress>
+                    <address>23850 MAIN ST</address>
+                    <city>SEATTLE</city>
+                    <state>WA</state>
+                    <zip>12345</zip>
+                </workAddress>
+                <professionalSchool>
+                    <school>TEST UNIVERSITY</school>
+                    <graduationYear>1988</graduationYear>
+                </professionalSchool>
+                <occupationAndLicensure>
+                    <number>1234567</number>
+                    <state>WA</state>
+                    <field>020</field>
+                </occupationAndLicensure>
+                <deceasedDate>
+                    <isDeceased>N</isDeceased>
+                </deceasedDate>
+            </individual>
+            <informationReported>
+                <legacyMMPR>
+                    <relationshipOfEntity>I</relationshipOfEntity>
+                    <actOrOmission>
+                        <code>010</code>
+                        <date>1992-08-14-04:00</date>
+                    </actOrOmission>
+                    <actOrOmission>
+                        <code>050</code>
+                        <date>1992-08-14-04:00</date>
+                    </actOrOmission>
+                    <paymentDate>1994-12-22-05:00</paymentDate>
+                    <paymentForThisPractitioner>34000.00</paymentForThisPractitioner>
+                    <paymentType>S</paymentType>
+                    <numberPractitioners>1</numberPractitioners>
+                    <paymentResultOf>S</paymentResultOf>
+                    <actOrOmissionDesc>FAILED TO TIMELY DIAGNOSE A HIP PROBLEM.</actOrOmissionDesc>
+                    <judgmentOrSettlementDesc>NO ADMISSION OF LIABILITY OR NEGLIGENCE</judgmentOrSettlementDesc>
+                </legacyMMPR>
+            </informationReported>
+            <statement>
+                <subjectStatement>
+                    <submitDate>2009-02-25-05:00</submitDate>
+                    <statementThisVersion>true</statementThisVersion>
+                    <statement>A NEW STATEMENT MODIFIED</statement>
+                </subjectStatement>
+                <disputeStatus>Y</disputeStatus>
+            </statement>
+        </report>
+    </pdsSubjectResponse>
+</pdsResponse>
+

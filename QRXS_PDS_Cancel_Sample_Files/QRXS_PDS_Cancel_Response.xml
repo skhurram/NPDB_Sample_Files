@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pdsResponse xmlns="http://www.npdb-hipdb.hrsa.gov/PdsResponse">
+    <submitter xmlns="">
+        <entityDBID>800000000000000</entityDBID>
+        <vendorID>1234567</vendorID>
+    </submitter>
+    <submissionFilename xmlns="">qrxs_pds_cancel_submission.xml</submissionFilename>
+    <certification xmlns="">
+        <name>JOHN SMITH</name>
+        <title>MEDICAL STAFF COORDINATOR</title>
+        <phone>
+            <number>123456789012345</number>
+        </phone>
+        <date>2009-02-12-05:00</date>
+    </certification>
+    <batchStatus xmlns="">
+        <dcn>7950000054903661</dcn>
+        <processDate>2009-03-19-04:00</processDate>
+        <successfullyProcessed>true</successfullyProcessed>
+    </batchStatus>
+    <pdsSubjectResponse xmlns="">
+        <status>
+            <dcn>7950000054903661</dcn>
+            <processDate>2009-03-19-04:00</processDate>
+            <successfullyProcessed>true</successfullyProcessed>
+        </status>
+        <individual>
+            <name>
+                <last>PARROTT</last>
+                <first>CHARLES</first>
+                <middle>JR</middle>
+            </name>
+            <gender>M</gender>
+            <birthdate>1955-08-11-04:00</birthdate>
+            <workAddress>
+                <address>1</address>
+                <address2>2</address2>
+                <city>3</city>
+                <state>OH</state>
+                <zip>45458</zip>
+            </workAddress>
+            <ssn>*****7777</ssn>
+            <professionalSchool>
+                <school>TEST UNIVERSITY</school>
+                <graduationYear>1988</graduationYear>
+            </professionalSchool>
+            <occupationAndLicensure>
+                <number>1234567</number>
+                <state>WA</state>
+                <field>020</field>
+            </occupationAndLicensure>
+            <department>TES</department>
+            <databankSubjectID>300000000257164</databankSubjectID>
+        </individual>
+        <monitoredUnder>
+            <titleIV>false</titleIV>
+            <section1921>false</section1921>
+            <section1128e>false</section1128e>
+        </monitoredUnder>
+        <enrollmentStatus>
+            <dataBank>N</dataBank>
+            <status>C</status>
+            <startDate>2009-03-18-04:00</startDate>
+            <endDate>2009-03-19-04:00</endDate>
+        </enrollmentStatus>
+        <enrollmentStatus>
+            <dataBank>H</dataBank>
+            <status>C</status>
+            <startDate>2009-03-18-04:00</startDate>
+            <endDate>2009-03-19-04:00</endDate>
+        </enrollmentStatus>
+        <reportsIncluded>false</reportsIncluded>
+    </pdsSubjectResponse>
+</pdsResponse>
+

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<reportDisclosureNotification xmlns="http://www.npdb-hipdb.hrsa.gov/PdsResponse">
+    <reportDisclosureInformation xmlns="">
+        <forAuthorizedUseBy>QRXS ENTITY</forAuthorizedUseBy>
+        <transactionDCN>7950000054904771</transactionDCN>
+        <processDate>2009-04-23-04:00</processDate>
+    </reportDisclosureInformation>
+    <disclosureType xmlns="">
+        <code>IR</code>
+        <description>The reporting entity (identified in Section A) has submitted an initial report #7950000054904771.</description>
+    </disclosureType>
+    <previousDisclosureDate xmlns="">2009-01-15-04:00</previousDisclosureDate>
+    <individual xmlns="">
+        <name>
+            <last>DOE</last>
+            <first>JOHN</first>
+            <middle>R</middle>
+            <suffix>JR</suffix>
+        </name>
+        <otherName>
+            <last>DOE</last>
+            <first>JOHN</first>
+            <middle>RICHARD</middle>
+            <suffix>JR</suffix>
+        </otherName>
+        <gender>M</gender>
+        <birthdate>1933-06-01-04:00</birthdate>
+        <organizationName>MEDICAL ORGANIZATION</organizationName>
+        <workAddress>
+            <address>123 MAIN STREET</address>
+            <address2>12</address2>
+            <city>FAIRFAX</city>
+            <state>VA</state>
+            <zip>22033</zip>
+        </workAddress>
+        <homeAddress>
+            <address>345 SOME STREET</address>
+            <address2>234</address2>
+            <city>FAIRFAX</city>
+            <state>VA</state>
+            <zip>22033</zip>
+        </homeAddress>
+        <ssn>*****7777</ssn>
+        <itin>987654321</itin>
+        <fein>111222333</fein>
+        <dea>978678968976</dea>
+        <upin>A11111</upin>
+        <professionalSchool>
+            <school>SCHOOL</school>
+            <graduationYear>1998</graduationYear>
+        </professionalSchool>
+        <occupationAndLicensure>
+            <number>123456789</number>
+            <state>VA</state>
+            <field>010</field>
+            <specialty>03</specialty>
+        </occupationAndLicensure>
+        <otherOccupationAndLicensure>
+            <number>036059249</number>
+            <state>IL</state>
+            <field>899</field>
+            <description>VALID 899 DESCRIPTION</description>
+        </otherOccupationAndLicensure>
+        <department>TES</department>
+        <databankSubjectID>300000000257472</databankSubjectID>
+    </individual>
+    <report xmlns="">
+        <contact>
+            <entityName>TEST ENTITY</entityName>
+            <officeOrName>JANE DOE</officeOrName>
+            <titleOrDept>CEO</titleOrDept>
+            <phone>
+                <number>412341234123412</number>
+            </phone>
+            <address>
+                <address>1234 TESTING LANE</address>
+                <city>FAIRFAX</city>
+                <state>VA</state>
+                <zip>22033</zip>
+            </address>
+        </contact>
+        <reportData>
+            <reportDCN>7950000054904771</reportDCN>
+            <transaction>I</transaction>
+            <originalSubmitDate>2009-04-23-04:00</originalSubmitDate>
+            <recentChangeDate>2009-04-23-04:00</recentChangeDate>
+            <npdb>
+                <maintainedIn>true</maintainedIn>
+                <titleIV>true</titleIV>
+                <section1921>true</section1921>
+            </npdb>
+            <hipdb>
+                <maintainedIn>true</maintainedIn>
+                <section1128E>true</section1128E>
+            </hipdb>
+            <maintainedUnder>
+                <statute>IV</statute>
+                <statute>1128E</statute>
+                <statute>1921</statute>
+            </maintainedUnder>
+        </reportData>
+        <individual>
+            <name>
+                <last>DOE</last>
+                <first>JOHN</first>
+                <middle>RICHARD</middle>
+                <suffix>JR</suffix>
+            </name>
+            <gender>M</gender>
+            <birthdate>1933-06-01-04:00</birthdate>
+            <workAddress>
+                <address>1201 SOMETHING LANE</address>
+                <city>DAYTON</city>
+                <state>MD</state>
+                <zip>20111</zip>
+            </workAddress>
+            <homeAddress>
+                <address>21 SOMETHING ELSE</address>
+                <city>RHODE</city>
+                <state>RI</state>
+                <zip>01100</zip>
+            </homeAddress>
+            <ssn>*****7777</ssn>
+            <itin>987654321</itin>
+            <fein>111222333</fein>
+            <dea>978678968976</dea>
+            <upin>A11111</upin>
+            <professionalSchool>
+                <school>SCHOOL</school>
+                <graduationYear>1998</graduationYear>
+            </professionalSchool>
+            <occupationAndLicensure>
+                <number>123456789</number>
+                <state>VA</state>
+                <field>010</field>
+                <specialty>03</specialty>
+            </occupationAndLicensure>
+            <deceasedDate>
+                <isDeceased>U</isDeceased>
+            </deceasedDate>
+        </individual>
+        <informationReported>
+            <aar>
+                <action>SL</action>
+                <classification>
+                    <code>1125</code>
+                </classification>
+                <agencyProgramName>FAKE AGENCY</agencyProgramName>
+                <actionTakenDate>2003-03-03-05:00</actionTakenDate>
+                <actionEffectiveDate>2003-03-03-05:00</actionEffectiveDate>
+                <actionLength>
+                    <permanent>true</permanent>
+                </actionLength>
+                <automaticReinstatement>Y</automaticReinstatement>
+                <amount>9.99</amount>
+                <ccb>true</ccb>
+                <narrative>DESCRIPTION OF SUBJECT'S ACT(S) OR OMISSION(S) OR OTHER REASONS FOR ACTION(S) TAKEN AND DESCRIPTION OF ACTION(S) TAKEN BY REPORTING ENTITY ENTERED HERE.</narrative>
+                <appeal>
+                    <onAppeal>N</onAppeal>
+                </appeal>
+                <basis>
+                    <code>44</code>
+                </basis>
+            </aar>
+        </informationReported>
+        <statement>
+            <disputeStatus>N</disputeStatus>
+        </statement>
+    </report>
+</reportDisclosureNotification>
+

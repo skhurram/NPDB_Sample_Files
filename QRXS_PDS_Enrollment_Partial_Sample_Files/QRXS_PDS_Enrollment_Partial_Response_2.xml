@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pdsResponse xmlns="http://www.npdb-hipdb.hrsa.gov/PdsResponse">
+    <submitter xmlns="">
+        <entityDBID>800000000000000</entityDBID>
+        <vendorID>1234567</vendorID>
+    </submitter>
+    <submissionFilename xmlns="">qrxs_pds_enrollment_partial_submission.xml</submissionFilename>
+    <certification xmlns="">
+        <name>JOHN SMITH</name>
+        <title>MEDICAL STAFF COORDINATOR</title>
+        <phone>
+            <number>123456789012345</number>
+        </phone>
+        <date>2009-03-06-05:00</date>
+    </certification>
+    <batchStatus xmlns="">
+        <dcn>7950000054903694</dcn>
+        <processDate>2009-03-19-04:00</processDate>
+        <successfullyProcessed>true</successfullyProcessed>
+    </batchStatus>
+    <chargeReference xmlns="">
+        <dataBank>N</dataBank>
+        <referenceNumber>1510510111</referenceNumber>
+    </chargeReference>
+    <chargeReference xmlns="">
+        <dataBank>H</dataBank>
+        <referenceNumber>1510510111</referenceNumber>
+    </chargeReference>
+    <pdsSubjectResponse xmlns="">
+        <status>
+            <dcn>7950000054903695</dcn>
+            <processDate>2009-03-19-04:00</processDate>
+            <successfullyProcessed>true</successfullyProcessed>
+        </status>
+        <individual>
+            <name>
+                <last>JOHN</last>
+                <first>CHARLES</first>
+            </name>
+            <gender>M</gender>
+            <birthdate>1955-08-11-04:00</birthdate>
+            <workAddress>
+                <address>123 MAIN STREET</address>
+                <address2>23</address2>
+                <city>FAIRFAX</city>
+                <state>VA</state>
+                <zip>22033</zip>
+            </workAddress>
+            <homeAddress>
+                <address>345 SOME STREET</address>
+                <address2>234</address2>
+                <city>FAIRFAX</city>
+                <state>VA</state>
+                <zip>22033</zip>
+            </homeAddress>
+            <ssn>*****7777</ssn>
+            <itin>987654321</itin>
+            <fein>111222333</fein>
+            <dea>978678968976</dea>
+            <upin>A11111</upin>
+            <professionalSchool>
+                <school>TEST UNIVERSITY</school>
+                <graduationYear>1999</graduationYear>
+            </professionalSchool>
+            <occupationAndLicensure>
+                <number>1234567</number>
+                <state>WA</state>
+                <field>020</field>
+            </occupationAndLicensure>
+            <customerUse>TESTCUSE2</customerUse>
+            <databankSubjectID>300000000257177</databankSubjectID>
+        </individual>
+        <monitoredUnder>
+            <titleIV>true</titleIV>
+            <section1921>false</section1921>
+            <section1128e>true</section1128e>
+        </monitoredUnder>
+        <enrollmentStatus>
+            <dataBank>N</dataBank>
+            <status>E</status>
+            <startDate>2009-03-19-04:00</startDate>
+            <endDate>2010-03-31-04:00</endDate>
+        </enrollmentStatus>
+        <enrollmentStatus>
+            <dataBank>H</dataBank>
+            <status>E</status>
+            <startDate>2009-03-19-04:00</startDate>
+            <endDate>2010-03-31-04:00</endDate>
+        </enrollmentStatus>
+        <reportsIncluded>true</reportsIncluded>
+    </pdsSubjectResponse>
+</pdsResponse>
+
