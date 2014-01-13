@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/Licensure" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns:lic="http://www.npdb-hipdb.hrsa.gov/Licensure" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.01">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+    <complexType name="licensureType">
+        <sequence>
+            <element name="number" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="16"/>
+                        <pattern value=".*\d.*"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="noLicense" type="boolean" minOccurs="0">
+                <annotation>
+                    <documentation>When State law does not require a license or the subject has a temporary or Foreign license, is operating without a required license, or is operating with an unauthorized license.</documentation>
+                </annotation>
+            </element>
+            <element name="state" type="ad:stateType" minOccurs="0"/>
+            <element name="field" type="lic:licensureCodeType"/>
+            <element name="description" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="60"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="specialty" type="lic:specialtyCodeType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <simpleType name="licensureCodeType">
+   		<restriction base="token">
+       		<length value="3"/>
+       		<pattern value="\d{3}"/>
+   		</restriction>
+	</simpleType>
+
+    <simpleType name="specialtyCodeType">
+        <restriction base="token">
+            <enumeration value="01">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Allergy and Immunology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="03">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Aerospace Medicine</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="05">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Anesthesiology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="10">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Cardiovascular Diseases</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="13">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Child Psychiatry</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="20">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Dermatology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="23">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Diagnostic Radiology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="25">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Emergency Medicine</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="29">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Forensic Pathology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="30">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Gastroenterology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="33">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>General Practice/Family Practice</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="35">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>General Preventive Medicine</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="37">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Hospitalist</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="39">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Internal Medicine</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="40">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Neurology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="43">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Neurology, Clinical Neurophysiology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="45">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Nuclear Medicine</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="50">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Obstetrics and Gynecology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="53">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Occupational Medicine</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="55">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Ophthalmology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="59">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Otolaryngology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="60">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Pediatrics</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="63">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Psychiatry</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="65">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Public Health</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="67">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Clinical Pharmacology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="69">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Physical Medicine and Rehabilitation</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="70">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Pulmonary Diseases</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="73">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Anatomic/Clinical Pathology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="75">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Radiology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="76">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Radiation Oncology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="80">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Colon and Rectal Surgery</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="81">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>General Surgery</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="82">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Neurological Surgery</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="83">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Orthopedic Surgery</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="84">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Plastic Surgery</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="85">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Thoracic Surgery</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="86">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Urological Surgery</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="98">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Other Specialty - Not Classified</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="99">
+                <annotation>
+                    <documentation>Physician Specialties</documentation>
+                    <documentation>Unspecified</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D1">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>General Dentistry (No Specialty)</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D2">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Dental: Public Health</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D3">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Endodontics</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D4">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Oral and Maxillofacial Surgery</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D5">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Oral and Maxillofacial Pathology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D6">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Orthodontics and Dentofacial Orthopedics</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D7">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Pediatric Dentistry</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D8">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Periodontics</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D9">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Prosthodontics</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="DA">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Oral and Maxillofacial Radiology</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="DB">
+                <annotation>
+                    <documentation>Dental Specialties</documentation>
+                    <documentation>Unknown</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+</schema>

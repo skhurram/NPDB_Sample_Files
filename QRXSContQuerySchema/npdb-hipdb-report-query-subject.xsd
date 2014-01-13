@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:org="http://www.npdb-hipdb.hrsa.gov/Organization" xmlns:ind="http://www.npdb-hipdb.hrsa.gov/Individual" xmlns:rqs="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.05">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Individual" schemaLocation="npdb-hipdb-individual.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Organization" schemaLocation="npdb-hipdb-organization.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <complexType name="QueryOrganizationSubjectType">
+        <complexContent>
+            <extension base="org:organizationSubjectType">
+                <sequence>
+                    <element name="customerUse" type="co:CustomerUseType" minOccurs="0"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="QueryIndividualSubjectType">
+        <complexContent>
+            <extension base="ind:individualSubjectType">
+                <sequence>
+                    <element name="customerUse" type="co:CustomerUseType" minOccurs="0"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="AffiliationType">
+        <annotation>
+            <documentation>AFF</documentation>
+        </annotation>
+        <sequence>
+            <element name="name">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="60"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="address" type="ad:affiliationAddressType" minOccurs="0"/>
+            <element name="natureRelationship" type="rqs:NatureRelationshipType" minOccurs="0"/>
+            <element name="otherNatureRelationship" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="40"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="HospitalAffiliationType">
+        <annotation>
+            <documentation>HOSP</documentation>
+        </annotation>
+        <sequence>
+            <element name="name">
+                <simpleType>
+                  <restriction base="token">
+                    <maxLength value="60" />
+                  </restriction>
+                </simpleType>
+            </element>
+            <element name="city" type="ad:cityType"/>
+            <element name="state" type="ad:stateType"/>
+        </sequence>
+    </complexType>
+    <complexType name="QueryReportIndividualSubjectType">
+        <complexContent>
+            <extension base="ind:individualSubjectType">
+                <sequence>
+                    <element name="deceasedDate" type="co:deceasedType" minOccurs="0"/>
+                    <element name="affiliation" type="rqs:AffiliationType" minOccurs="0" maxOccurs="4">
+                        <annotation>
+                            <documentation>Valid for AAR or JOCR</documentation>
+                        </annotation>
+                    </element>
+                    <element name="hospitalAffiliation" type="rqs:HospitalAffiliationType" minOccurs="0" maxOccurs="5">
+                        <annotation>
+                            <documentation>Valid for MMPR</documentation>
+                        </annotation>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="PrincipalOfficersOwnersType">
+        <annotation>
+            <documentation>POO</documentation>
+        </annotation>
+        <sequence>
+            <element name="name" type="co:nameType" minOccurs="0"/>
+            <element name="title" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="40"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="QueryReportOrganizationSubjectType">
+        <complexContent>
+            <extension base="org:organizationSubjectType">
+                <sequence>
+                    <element name="affiliation" type="rqs:AffiliationType" minOccurs="0" maxOccurs="4"/>
+                    <element name="principalOfficerOwner" type="rqs:PrincipalOfficersOwnersType" minOccurs="0" maxOccurs="5"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <simpleType name="NatureRelationshipType">
+        <restriction base="token">
+            <length value="3"/>
+            <enumeration value="100">
+                <annotation>
+                    <documentation>Subject is Owner/Partner of Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="150">
+                <annotation>
+                    <documentation>Subject is Manager/Supervisor/Director of Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="200">
+                <annotation>
+                    <documentation>Subject is Employee of Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="250">
+                <annotation>
+                    <documentation>Subject is Contractor to Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="300">
+                <annotation>
+                    <documentation>Subject is Member of Affiliate or Associate's Network </documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="350">
+                <annotation>
+                    <documentation>Subject has Clinical Privileges With Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="400">
+                <annotation>
+                    <documentation>Subject is Supplier to Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="450">
+                <annotation>
+                    <documentation>Subject is Customer of Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="500">
+                <annotation>
+                    <documentation>Subject is Parent Organization of Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="600">
+                <annotation>
+                    <documentation>Subject is Subsidiary of Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="700">
+                <annotation>
+                    <documentation>Subject is in Joint Venture With Affiliate or Associate</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="999">
+                <annotation>
+                    <documentation>Other Relationship - Not Classified, Specify</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+</schema>

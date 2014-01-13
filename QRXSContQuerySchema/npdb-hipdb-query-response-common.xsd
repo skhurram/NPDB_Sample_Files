@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/QueryResponseCommon" xmlns:qrc="http://www.npdb-hipdb.hrsa.gov/QueryResponseCommon" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:rqs="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns:rqc="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:jocr="http://www.npdb-hipdb.hrsa.gov/JOCR" xmlns:aar="http://www.npdb-hipdb.hrsa.gov/AAR" xmlns:mmpr="http://www.npdb-hipdb.hrsa.gov/MMPR" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.09">
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" schemaLocation="npdb-hipdb-report-query-subject.xsd"/>
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" schemaLocation="npdb-hipdb-report-query-common.xsd"/>
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/AAR" schemaLocation="npdb-hipdb-aar.xsd"/>
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/JOCR" schemaLocation="npdb-hipdb-jocr.xsd"/>
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/MMPR" schemaLocation="npdb-hipdb-mmpr.xsd"/>
+	<complexType name="ReportTypeDataType">
+		<annotation>
+			<documentation>AART, JOCRT, MMRT</documentation>
+		</annotation>
+		<sequence>
+			<element name="reportDCN" type="rqc:DCNType" minOccurs="0"/>
+			<element name="transaction">
+				<annotation>
+					<documentation>Initial, Correction, Revision to Action, Correction of Revision to Action, Appeal</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<enumeration value="I"/>
+						<enumeration value="C"/>
+						<enumeration value="R"/>
+						<enumeration value="O"/>
+						<enumeration value="A"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="previousDCN" type="rqc:DCNType" minOccurs="0"/>
+			<element name="previousTransaction" type="rqc:TransactionCodeType" minOccurs="0"/>
+			<element name="latestRelatedDCN" type="rqc:DCNType" minOccurs="0">
+				<annotation>
+					<documentation>The latest revision of the related DCN</documentation>
+				</annotation>
+			</element>
+			<element name="latestRelatedTransaction" minOccurs="0">
+				<annotation>
+					<documentation>C - Report Correction, V - Report Void</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<enumeration value="C"/>
+						<enumeration value="V"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="latestRelatedNote" type="co:NoteType" minOccurs="0">
+				<annotation>
+					<documentation>Provides additional information on the related report</documentation>
+				</annotation>
+			</element>
+			<element name="originalSubmitDate" type="date"/>
+			<element name="correctedFields" minOccurs="0">
+				<annotation>
+					<documentation>Fields added, modified, or deleted in a correction</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="field" type="token" maxOccurs="unbounded"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="recentChangeDate" type="date" minOccurs="0"/>
+			<element name="maintainedUnder" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="statute" type="token" maxOccurs="unbounded"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="notes" minOccurs="0">
+				<annotation>
+					<documentation>Set of notes about this report.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="note" type="co:NoteType" maxOccurs="unbounded"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ReportActionDataType">
+		<choice>
+			<element name="aar" type="aar:AARActionDataType"/>
+			<element name="jocr" type="jocr:JOCRActionDataType"/>
+			<element name="mmpr" type="mmpr:MMPRActionDataType"/>
+			<element name="legacyAAR" type="aar:LegacyAARActionDataType"/>
+			<element name="legacyMMPR" type="mmpr:LegacyMMPRActionDataType"/>
+		</choice>
+	</complexType>
+	<element name="reportResponse" type="qrc:ReportResponseFileType"/>
+	<complexType name="ReportResponseFileType">
+		<sequence>
+			<element name="submitter" type="rqc:HeaderType"/>
+			<element name="response" type="qrc:ReportResponseBaseType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ReportResponseBaseType">
+		<sequence>
+			<element name="status" type="rqc:TransactionStatusType"/>
+			<element name="reportingCompliance" type="rqc:ReportingComplianceType" minOccurs="0">
+				<annotation>
+					<documentation>Provided for Initial and Revision to Action Report responses only</documentation>
+				</annotation>
+			</element>
+			<element name="certification" type="rqc:CertificationType"/>
+			<element name="customerUse" type="co:CustomerUseType" minOccurs="0"/>
+			<choice>
+				<element name="report" type="qrc:ReportOutputType">
+					<annotation>
+						<documentation>Initial, Correction, Revision to Action, Correction of Revision to Action, Appeal</documentation>
+					</annotation>
+				</element>
+				<element name="void" type="rqc:VoidType"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<complexType name="ReportOutputType">
+		<sequence>
+			<element name="contact" type="rqc:ContactType"/>
+			<element name="latestContact" type="rqc:LatestContactType" minOccurs="0">
+				<annotation>
+					<documentation>Provided if the reporter name and address information has changed since the report submission date.</documentation>
+				</annotation>
+			</element>
+			<element name="reportData" type="qrc:ReportTypeDataType"/>
+			<choice>
+				<annotation>
+					<documentation>Subject Information</documentation>
+				</annotation>
+				<element name="individual" type="rqs:QueryReportIndividualSubjectType"/>
+				<element name="organization" type="rqs:QueryReportOrganizationSubjectType"/>
+			</choice>
+			<element name="informationReported" type="qrc:ReportActionDataType"/>
+			<element name="statement" type="rqc:ReportStatementType"/>
+			<choice minOccurs="0">
+				<element name="supplementalIndividual" type="rqc:SupplementalIndividualType" minOccurs="0"/>
+				<element name="supplementalOrganization" type="rqc:SupplementalOrganizationType" minOccurs="0"/>
+			</choice>
+			<element name="subjectNotificationFailure" type="rqc:SubjectNotificationFailureType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="reportRejection" type="qrc:ReportRejectionFileType"/>
+	<complexType name="ReportRejectionFileType">
+		<sequence>
+			<element name="submitter" type="rqc:HeaderType"/>
+			<element name="rejection" type="qrc:ReportRejectionBaseType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ReportRejectionBaseType">
+		<sequence>
+			<element name="status" type="rqc:TransactionStatusType"/>
+			<element name="certification" type="rqc:CertificationType"/>
+			<element name="entityReference" type="rqc:EntityReferenceType" minOccurs="0">
+				<annotation>
+					<documentation>Entity Internal Report Reference</documentation>
+				</annotation>
+			</element>
+			<element name="customerUse" type="co:CustomerUseType" minOccurs="0"/>
+			<choice>
+				<element name="report" type="qrc:ReportRejectionType">
+					<annotation>
+						<documentation>Initial, Correction, Revision to Action, Correction of Revision to Action</documentation>
+					</annotation>
+				</element>
+				<element name="void" type="rqc:VoidType"/>
+				<element name="appeal" type="rqc:AppealType"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<complexType name="ReportRejectionType">
+		<sequence>
+			<element name="transaction">
+				<annotation>
+					<documentation>Initial, Correction, Revision, Correction of Revision</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<enumeration value="I"/>
+						<enumeration value="C"/>
+						<enumeration value="R"/>
+						<enumeration value="O"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="previousDCN" type="rqc:DCNType" minOccurs="0"/>
+			<choice>
+				<element name="individual" type="rqs:QueryReportIndividualSubjectType"/>
+				<element name="organization" type="rqs:QueryReportOrganizationSubjectType"/>
+			</choice>
+			<element name="informationReported" type="qrc:ReportActionDataType"/>
+		</sequence>
+	</complexType>
+	<element name="reportChangeNotification" type="qrc:ReportChangeNotificationFileType"/>
+	<complexType name="ReportChangeNotificationFileType">
+		<sequence>
+			<element name="reportChangeInformation" type="qrc:ReportInformationType"/>
+			<element name="disclosureType" type="qrc:DisclosureSourceType">
+				<annotation>
+					<documentation>Reason for disclosure</documentation>
+				</annotation>
+			</element>
+			<element name="subjectSource" type="qrc:SubjectSourceType">
+				<annotation>
+					<documentation>Query, Report, PDS</documentation>
+				</annotation>
+			</element>
+			<choice>
+				<element name="report" type="qrc:ReportOutputType"/>
+				<element name="void" type="rqc:VoidType"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<complexType name="ReportInformationType">
+		<sequence>
+			<element name="forAuthorizedUseBy">
+				<annotation>
+					<documentation>Name of the entity</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="60"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="transactionDCN" type="rqc:DCNType">
+				<annotation>
+					<documentation>processing DCN</documentation>
+				</annotation>
+			</element>
+			<element name="processDate" type="date">
+				<annotation>
+					<documentation>Processing date</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="DisclosureSourceType">
+		<sequence>
+			<element name="code">
+				<annotation>
+					<documentation>Disclosure type code</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<length value="2"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="description" type="co:NoteType"/>
+		</sequence>
+	</complexType>
+	<simpleType name="SubjectSourceType">
+		<annotation>
+			<documentation>Query, Report, PDS</documentation>
+		</annotation>
+		<restriction base="token">
+			<length value="1"/>
+			<enumeration value="Q">
+				<annotation>
+					<documentation>You received the previous version of this report via a query</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R">
+				<annotation>
+					<documentation>Your entity submitted the previous version of this report</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="P">
+				<annotation>
+					<documentation>You received the previous version of this report via a PDS enrollment that has since been cancelled</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<complexType name="querySubjectResponseType">
+		<sequence>
+			<element name="status" type="rqc:TransactionStatusType"/>
+			<choice>
+				<annotation>
+					<documentation>Information submitted</documentation>
+				</annotation>
+				<element name="individual" type="rqs:QueryIndividualSubjectType"/>
+				<element name="organization" type="rqs:QueryOrganizationSubjectType"/>
+			</choice>
+			<element name="processedUnder" type="co:Statutes"/>
+			<element name="report" type="qrc:ReportOutputType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Reports found</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="QueryResponseFileType">
+		<sequence>
+			<element name="submitter" type="rqc:HeaderType"/>
+			<element name="submissionFilename" type="qrc:SubmissionFilenameType"/>
+			<element name="certification" type="rqc:CertificationType"/>
+			<element name="batchStatus" type="rqc:TransactionStatusType"/>
+			<choice>
+				<element name="chargeReceipt" type="qrc:DataBankChargeType" maxOccurs="2"/>
+				<element name="chargeReference" type="qrc:ChargeReferenceType" maxOccurs="2">
+					<annotation>
+						<documentation>If subjects were previously charged</documentation>
+					</annotation>
+				</element>
+			</choice>
+			<element name="querySubjectResponse" type="qrc:querySubjectResponseType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<element name="queryResponse" type="qrc:QueryResponseFileType"/>
+	<element name="queryConfirmation" type="qrc:QueryConfirmationFileType"/>
+	<complexType name="QueryConfirmationFileType">
+		<sequence>
+			<element name="submitter" type="rqc:HeaderType"/>
+			<element name="submissionFilename" type="qrc:SubmissionFilenameType"/>
+			<element name="certification" type="rqc:CertificationType"/>
+			<element name="batchStatus" type="rqc:TransactionStatusType"/>
+			<element name="subjectConfirmation" type="qrc:QuerySubjectConfirmationType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="QuerySubjectConfirmationType">
+		<sequence>
+			<element name="accepted" type="boolean"/>
+			<element name="dcn" type="rqc:DCNType" minOccurs="0"/>
+			<element name="error" type="rqc:ErrorType" minOccurs="0" maxOccurs="unbounded"/>
+			<choice>
+				<annotation>
+					<documentation>Information submitted</documentation>
+				</annotation>
+				<element name="individual" type="rqs:QueryIndividualSubjectType"/>
+				<element name="organization" type="rqs:QueryOrganizationSubjectType"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<complexType name="DataBankChargeType">
+		<sequence>
+			<element name="payment">
+				<complexType>
+					<choice>
+						<element name="isFree" type="boolean"/>
+						<element name="method" type="rqc:PaymentType"/>
+					</choice>
+				</complexType>
+			</element>
+			<element name="dateCharged" type="date" minOccurs="0"/>
+			<element name="chargeReference" type="qrc:ChargeReferenceType"/>
+			<element name="numberOfSubjects" type="nonNegativeInteger"/>
+			<element name="numberOfSubjectsCharged" type="nonNegativeInteger"/>
+			<element name="numberOfSubjectsNotProcessed" type="nonNegativeInteger" minOccurs="0"/>
+			<element name="pricePerSubject" type="rqc:AmountType"/>
+			<element name="numberOfCreditsUsed" type="nonNegativeInteger" minOccurs="0"/>
+			<element name="amountOfCreditsUsed" type="rqc:AmountType" minOccurs="0"/>
+			<element name="totalCharge" type="rqc:AmountType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ChargeReferenceType">
+		<sequence>
+			<element name="dataBank">
+				<simpleType>
+					<restriction base="token">
+						<length value="1"/>
+						<enumeration value="N">
+							<annotation>
+								<documentation source="NPDB"/>
+							</annotation>
+						</enumeration>
+						<enumeration value="H">
+							<annotation>
+								<documentation source="HIPDB"/>
+							</annotation>
+						</enumeration>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="referenceNumber" type="qrc:ChargeReferenceNumberType"/>
+		</sequence>
+	</complexType>
+	<simpleType name="SubmissionFilenameType">
+		<restriction base="token">
+			<maxLength value="255"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ChargeReferenceNumberType">
+		<restriction base="token">
+			<maxLength value="25"/>
+		</restriction>
+	</simpleType>
+</schema>

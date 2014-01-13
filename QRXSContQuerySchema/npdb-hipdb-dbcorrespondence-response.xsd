@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/DataBankCorrespondence" xmlns:rqc="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:corr="http://www.npdb-hipdb.hrsa.gov/DataBankCorrespondence" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.01" jaxb:version="1.0">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" schemaLocation="npdb-hipdb-report-query-common.xsd"/>
+    <complexType name="DataBankCorrespondenceType">
+        <annotation>
+            <documentation>Data Bank Correspondence</documentation>
+        </annotation>
+        <sequence>
+            <element name="date" type="date">
+                <annotation>
+                    <documentation>Date message was generated</documentation>
+                </annotation>
+            </element>
+            <element name="sender">
+                <annotation>
+                    <documentation>Sender of the message</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="60"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="message" type="co:NoteType">
+                <annotation>
+                    <documentation>Plain-text message of the Data Bank Correspondence</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="CorrOutputFileType">
+        <sequence>
+            <element name="recipient" type="rqc:RecipientHeaderType"/>
+            <element name="response" type="corr:DataBankCorrespondenceType"/>
+        </sequence>
+    </complexType>
+    <element name="correspondence" type="corr:CorrOutputFileType"/>
+</schema>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/AAR" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:rqs="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns:rqc="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:aar="http://www.npdb-hipdb.hrsa.gov/AAR" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.06" jaxb:version="1.0">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" schemaLocation="npdb-hipdb-report-query-subject.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" schemaLocation="npdb-hipdb-report-query-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <annotation>
+        <appinfo>
+            <jaxb:globalBindings generateIsSetMethod="true"/>
+        </appinfo>
+    </annotation>
+    <simpleType name="AARAction">
+        <restriction base="token">
+            <length value="2"/>
+            <enumeration value="SL">
+                <annotation>
+                    <documentation>State Licensure</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="FL">
+                <annotation>
+                    <documentation>Federal Licensure</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="CP">
+                <annotation>
+                    <documentation>Clinical Privilege</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="PS">
+                <annotation>
+                    <documentation>Professional Society</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="HP">
+                <annotation>
+                    <documentation>Health Plan</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="ED">
+                <annotation>
+                    <documentation>Exclusion/Debarment</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="GA">
+                <annotation>
+                    <documentation>Government Administrative</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="AC">
+                <annotation>
+                    <documentation>Accreditation</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="PR">
+                <annotation>
+                    <documentation>Peer Review Organization</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="LegacyAARAction">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="C">
+                <annotation>
+                    <documentation>Clinical Privileges</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="L">
+                <annotation>
+                    <documentation>Licensure</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>Society Membership</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <complexType name="AARActionDataType">
+        <annotation>
+            <documentation>CAAR Base type </documentation>
+        </annotation>
+        <sequence>
+            <element name="action" type="aar:AARAction"/>
+            <element name="classification" type="rqc:ClassificationType" maxOccurs="5"/>
+            <element name="agencyProgramName" type="rqc:AgencyNameType" minOccurs="0"/>
+            <element name="findingDate" type="date" minOccurs="0"/>
+            <element name="actionTakenDate" type="date" minOccurs="0"/>
+            <element name="actionEffectiveDate" type="date" minOccurs="0"/>
+            <element name="actionLength" type="rqc:LengthActionType" minOccurs="0"/>
+            <element name="automaticReinstatement" type="rqc:AutomaticReinstatementType" minOccurs="0"/>
+            <element name="amount" type="rqc:AmountType" minOccurs="0"/>
+            <element name="orgDefn" type="boolean" minOccurs="0"/>
+            <element name="ccb" type="boolean" minOccurs="0"/>
+            <element name="narrative" type="rqc:NarrativeType" minOccurs="0"/>
+            <element name="appeal" type="rqc:ActionAppealType" minOccurs="0"/>
+            <element name="basis" type="rqc:BasisType" minOccurs="0" maxOccurs="5"/>
+        </sequence>
+    </complexType>
+    <complexType name="LegacyAARActionDataType">
+        <annotation>
+            <documentation>AAR Base type</documentation>
+        </annotation>
+        <sequence>
+            <element name="action" type="aar:LegacyAARAction">
+                <annotation>
+                    <documentation>AA_RPT_TYPE</documentation>
+                </annotation>
+            </element>
+            <element name="classification">
+                <annotation>
+                    <documentation>AA_CLASS_CD</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="token">
+                        <length value="5"/>
+                        <pattern value="\d{5}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="actionTakenDate" type="date" minOccurs="0">
+                <annotation>
+                    <documentation>AA_DTE_OF_ACTN</documentation>
+                </annotation>
+            </element>
+            <element name="actionEffectiveDate" type="date" minOccurs="0">
+                <annotation>
+                    <documentation>EFF_DTE_OF_ACTION</documentation>
+                </annotation>
+            </element>
+            <element name="actionLength" type="rqc:LengthActionType" minOccurs="0">
+                <annotation>
+                    <documentation>LENGTH_OF_ACT</documentation>
+                </annotation>
+            </element>
+            <element name="narrative" type="rqc:NarrativeType" minOccurs="0">
+                <annotation>
+                    <documentation>AA_DESC</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="AARReportType">
+        <sequence>
+            <element name="certification" type="rqc:CertificationType"/>
+            <element name="customerUse" type="co:CustomerUseType" minOccurs="0"/>
+            <choice>
+                <element name="report">
+                    <annotation>
+                        <documentation>Initial, Correction, Revision to Action, or Correction of Revision to Action</documentation>
+                    </annotation>
+                    <complexType>
+                        <sequence>
+                            <choice>
+                                <annotation>
+                                    <documentation>Subject Information</documentation>
+                                </annotation>
+                                <element name="individual" type="rqs:QueryReportIndividualSubjectType"/>
+                                <element name="organization" type="rqs:QueryReportOrganizationSubjectType"/>
+                            </choice>
+                            <element name="entityReference" type="rqc:EntityReferenceType" minOccurs="0">
+                                <annotation>
+                                    <documentation>Entity Internal Report Reference</documentation>
+                                </annotation>
+                            </element>
+                            <element name="transaction" type="rqc:TransactionCodeType">
+                                <annotation>
+                                    <documentation>Initial, Correction, Revision to Action, Correction of Revision to Action</documentation>
+                                </annotation>
+                            </element>
+                            <element name="previousDCN" type="rqc:DCNType" minOccurs="0">
+                                <annotation>
+                                    <documentation>Omit for Initial</documentation>
+                                </annotation>
+                            </element>
+                            <element name="informationReported" type="aar:AARActionDataType"/>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element name="void" type="rqc:VoidType"/>
+                <element name="appeal" type="rqc:AppealType"/>
+            </choice>
+        </sequence>
+    </complexType>
+    <complexType name="AARSubmissionFileType">
+        <sequence>
+            <element name="submitter" type="rqc:HeaderType"/>
+            <element name="submission" type="aar:AARReportType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="AARSubmission" type="aar:AARSubmissionFileType"/>
+</schema>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/Organization" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:org="http://www.npdb-hipdb.hrsa.gov/Organization" xmlns:orgcd="http://www.npdb-hipdb.hrsa.gov/OrganizationCode" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.01">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Licensure" schemaLocation="npdb-hipdb-occupation-licensure.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/OrganizationCode" schemaLocation="npdb-hipdb-organization-type-code.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+    <complexType name="organizationSubjectType">
+        <sequence>
+            <element name="name" type="co:organizationNameType"/>
+            <element name="otherName" type="co:organizationNameType" minOccurs="0" maxOccurs="5"/>
+            <element name="address" type="ad:addressType" minOccurs="0"/>
+            <element name="organizationType" type="co:organizationTypeCodeType" minOccurs="0"/>
+            <element name="fein" type="co:feinType" minOccurs="0" maxOccurs="4"/>
+            <element name="ssn" type="co:ssnType" minOccurs="0" maxOccurs="4"/>
+            <element name="itin" type="co:itinType" minOccurs="0" maxOccurs="4"/>
+            <element name="license" type="org:organizationLicenseType" minOccurs="0" maxOccurs="3"/>
+            <element name="dea" type="co:deaType" minOccurs="0" maxOccurs="4"/>
+            <element name="clia" type="co:cliaType" minOccurs="0" maxOccurs="6"/>
+            <element name="fda" type="co:fdaType" minOccurs="0" maxOccurs="6"/>
+            <element name="npi" type="co:npiType" minOccurs="0" maxOccurs="4"/>
+            <element name="medicareProvider" type="co:medicareProviderType" minOccurs="0" maxOccurs="4"/>
+            <element name="subjectID" type="co:subjectIDType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <complexType name="organizationLicenseType">
+        <sequence>
+            <element name="number" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="16"/>
+                        <pattern value=".*\d.*"/>
+                    </restriction>
+                </simpleType>
+            </element>        
+            <element name="noLicense" type="boolean" minOccurs="0">
+                <annotation>
+                    <documentation>When State law does not require a license or the subject has a temporary or Foreign license, is operating without a required license, or is operating with an unauthorized license.</documentation>
+                </annotation>
+            </element>
+            <element name="state" type="ad:stateType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+</schema>

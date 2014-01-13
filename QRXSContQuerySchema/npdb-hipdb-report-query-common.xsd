@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:rqs="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns:rqc="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.07">
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+	<import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" schemaLocation="npdb-hipdb-report-query-subject.xsd"/>
+	<complexType name="LengthActionType">
+		<choice>
+			<element name="indefinite" type="boolean"/>
+			<element name="permanent" type="boolean"/>
+			<element name="length" type="duration"/>
+		</choice>
+	</complexType>
+	<simpleType name="AutomaticReinstatementType">
+		<annotation>
+			<documentation>Y, N, C</documentation>
+		</annotation>
+		<restriction base="token">
+			<enumeration value="Y">
+				<annotation>
+					<documentation>Yes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="N">
+				<annotation>
+					<documentation>No</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C">
+				<annotation>
+					<documentation>Yes, with condition (requires a Revision to Action Report when status changes) </documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<complexType name="ActionAppealType">
+		<annotation>
+			<documentation>APEAL</documentation>
+		</annotation>
+		<sequence>
+			<element name="onAppeal" type="co:YesNoUnknown">
+				<annotation>
+					<documentation>Y, N, U</documentation>
+				</annotation>
+			</element>
+			<element name="appealDate" type="date" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="StatementType">
+		<sequence>
+			<element name="submitDate" type="date"/>
+			<element name="statementThisVersion" type="boolean">
+				<annotation>
+					<documentation>True if subject statement submitted for this version of the report, False if for an earlier version</documentation>
+				</annotation>
+			</element>
+			<element name="statement">
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="4000"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ReportStatementType">
+		<annotation>
+			<documentation>RSDR</documentation>
+		</annotation>
+		<sequence>
+			<element name="subjectStatement" type="rqc:StatementType" minOccurs="0"/>
+			<element name="secretaryStatement" type="rqc:StatementType" minOccurs="0"/>
+			<element name="disputeStatus">
+				<simpleType>
+					<restriction base="token">
+						<length value="1"/>
+						<enumeration value="N">
+							<annotation>
+								<documentation>Not in dispute</documentation>
+							</annotation>
+						</enumeration>
+						<enumeration value="Y">
+							<annotation>
+								<documentation>In dispute</documentation>
+							</annotation>
+						</enumeration>
+						<enumeration value="S">
+							<annotation>
+								<documentation>Elevated to Secretarial Review</documentation>
+							</annotation>
+						</enumeration>
+						<enumeration value="R">
+							<annotation>
+								<documentation>Reviewed by Secretary</documentation>
+							</annotation>
+						</enumeration>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="CertificationType">
+		<annotation>
+			<documentation>CERT</documentation>
+		</annotation>
+		<sequence>
+			<element name="name">
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="40"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="title">
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="40"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="phone" type="rqc:PhoneType"/>
+			<element name="date" type="date"/>
+		</sequence>
+	</complexType>
+	<complexType name="ContactType">
+		<annotation>
+			<documentation>RPOC</documentation>
+		</annotation>
+		<sequence>
+			<element name="entityName" type="rqc:EntityNameType"/>
+			<element name="additionalEntityName" type="rqc:AdditionalEntityNameType" minOccurs="0"/>
+			<element name="officeOrName" type="rqc:OfficeOrNameType"/>
+			<element name="titleOrDept" type="rqc:TitleOrDeptType"/>
+			<element name="phone" type="rqc:PhoneType"/>
+			<element name="address" type="ad:addressType"/>
+			<element name="entityReference" type="rqc:EntityReferenceType" minOccurs="0">
+				<annotation>
+					<documentation>Entity Internal Report Reference</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LatestContactType">
+		<annotation>
+			<documentation>Provides the most recent information on the entity or its successor on file with the Data Bank(s).</documentation>
+		</annotation>
+		<sequence>
+			<element name="entityStatus">
+				<annotation>
+					<documentation>Status of the entity</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<enumeration value="A">
+							<annotation>
+								<documentation>A - Original Reporting Entity is Active </documentation>
+							</annotation>
+						</enumeration>
+						<enumeration value="S">
+							<annotation>
+								<documentation>S - Original Reporting Entity is Inactive but has a Successor </documentation>
+							</annotation>
+						</enumeration>
+						<enumeration value="D">
+							<annotation>
+								<documentation>D - Original Reporting Entity is Inactive with no Successor </documentation>
+							</annotation>
+						</enumeration>
+						<enumeration value="N">
+							<annotation>
+								<documentation>N - Original Reporting Entity is Inactive and its Successor is Inactive</documentation>
+							</annotation>
+						</enumeration>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="entityName" type="rqc:EntityNameType" minOccurs="0">
+				<annotation>
+					<documentation>Most recent name of the entity</documentation>
+				</annotation>
+			</element>
+			<element name="additionalEntityName" type="rqc:AdditionalEntityNameType" minOccurs="0"/>
+
+			<element name="officeOrName" type="rqc:OfficeOrNameType" minOccurs="0"/>
+			<element name="titleOrDept" type="rqc:TitleOrDeptType" minOccurs="0"/>
+			<element name="phone" type="rqc:PhoneType" minOccurs="0"/>
+			<element name="address" type="ad:addressType" minOccurs="0"/>
+			<element name="lastUpdateDate" type="date" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="SupplementalIndividualType">
+		<annotation>
+			<documentation>ISUPPL</documentation>
+		</annotation>
+		<sequence>
+			<element name="deceasedDate" type="date" minOccurs="0"/>
+			<element name="name" type="co:nameType" minOccurs="0" maxOccurs="5"/>
+		</sequence>
+	</complexType>
+	<complexType name="SupplementalOrganizationType">
+		<annotation>
+			<documentation>ESUPPL</documentation>
+		</annotation>
+		<sequence>
+			<element name="name" type="co:organizationNameType" maxOccurs="5"/>
+		</sequence>
+	</complexType>
+	<complexType name="SubjectNotificationFailureType">
+		<annotation>
+			<documentation>SUPPLSND</documentation>
+		</annotation>
+		<sequence>
+			<element name="notificationDate" type="date"/>
+			<element name="address" type="ad:addressType"/>
+		</sequence>
+	</complexType>
+	<complexType name="AppealType">
+		<annotation>
+			<documentation>Appeal</documentation>
+		</annotation>
+		<sequence>
+			<element name="previousDCN" type="rqc:DCNType"/>
+			<element name="appeal" type="rqc:ActionAppealType"/>
+		</sequence>
+	</complexType>
+	<complexType name="VoidType">
+		<annotation>
+			<documentation>Void</documentation>
+		</annotation>
+		<sequence>
+			<element name="previousDCN" type="rqc:DCNType"/>
+			<element name="voidReason" type="rqc:VoidReasonType"/>
+		</sequence>
+	</complexType>
+	<complexType name="HeaderType">
+		<annotation>
+			<documentation>HDR</documentation>
+		</annotation>
+		<sequence>
+			<element name="entityDBID" type="co:DBIDType"/>
+			<element name="agentDBID" type="co:DBIDTypeMaskable" minOccurs="0"/>
+			<element name="vendorID" type="co:VendorIDType"/>
+		</sequence>
+	</complexType>
+	<complexType name="RecipientHeaderType">
+		<annotation>
+			<documentation>Receiver header type contains DBID and UserID elements</documentation>
+		</annotation>
+		<sequence>
+			<element name="entityDBID" type="co:DBIDType"/>
+			<element name="userID" type="co:UserIDType"/>
+		</sequence>
+	</complexType>
+	<simpleType name="DCNType">
+		<annotation>
+			<documentation>PDCN</documentation>
+		</annotation>
+		<restriction base="token">
+			<length value="16"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="EntityReferenceType">
+		<annotation>
+			<documentation>ER</documentation>
+		</annotation>
+		<restriction base="token">
+			<maxLength value="20"/>
+		</restriction>
+	</simpleType>
+	<complexType name="PhoneType">
+		<sequence>
+			<element name="number">
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="15"/>
+						<pattern value="\d{10,}"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="extension" minOccurs="0">
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="5"/>
+						<pattern value="\d*"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="TransactionStatusType">
+		<annotation>
+			<documentation>RSTA</documentation>
+		</annotation>
+		<sequence>
+			<element name="dcn" type="rqc:DCNType"/>
+			<element name="processDate" type="date"/>
+			<element name="successfullyProcessed" type="boolean"/>
+			<element name="error" type="rqc:ErrorType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="ReportingComplianceType">
+		<annotation>
+			<documentation>Applicable to Initial and Revision to Action Reports only</documentation>
+		</annotation>
+		<sequence>
+			<element name="daysToReport">
+				<annotation>
+					<documentation>Number of days to report</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="5"/>
+						<pattern value="\d+"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="compliant" type="boolean"/>
+			<element name="compliantText">
+				<annotation>
+					<documentation>Notice of compliance or non-compliance</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="4000"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="VoidReasonType">
+		<restriction base="token">
+			<enumeration value="V0">
+				<annotation>
+					<documentation>The report was erroneously submitted (e.g., wrong practitioner named; duplicate report, payment not delivered; action never finalized).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="V1">
+				<annotation>
+					<documentation>The report was not required to be filed; the action does not meet the legal reporting criteria.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="V2">
+				<annotation>
+					<documentation>The action was reversed because the original action should never have been taken (e.g., overturned on appeal).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="BasisCodeType">
+		<restriction base="token">
+			<length value="2"/>
+			<pattern value="(\c|\d){2}"/>
+		</restriction>
+	</simpleType>
+	<complexType name="BasisType">
+		<annotation>
+			<documentation>BACTN</documentation>
+		</annotation>
+		<sequence>
+			<element name="code" type="rqc:BasisCodeType"/>
+			<element name="description" minOccurs="0">
+				<annotation>
+					<documentation>Specify if code is 99 or D8</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="75"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="ClassificationCodeType">
+		<restriction base="token">
+			<length value="4"/>
+			<pattern value="\d{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="AgencyNameType">
+		<restriction base="token">
+			<maxLength value="60"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="NarrativeType">
+		<restriction base="normalizedString">
+			<maxLength value="4000"/>
+		</restriction>
+	</simpleType>
+	<complexType name="ClassificationType">
+		<sequence>
+			<element name="code" type="rqc:ClassificationCodeType"/>
+			<element name="description" minOccurs="0">
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="40"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="TransactionCodeType">
+		<restriction base="token">
+			<enumeration value="I">
+				<annotation>
+					<documentation>Initial</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C">
+				<annotation>
+					<documentation>Correction</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R">
+				<annotation>
+					<documentation>Revision to Action</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O">
+				<annotation>
+					<documentation>Correction of Revision to Action</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="MmprTransactionCodeType">
+		<restriction base="token">
+			<enumeration value="I">
+				<annotation>
+					<documentation>Initial</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C">
+				<annotation>
+					<documentation>Correction</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TransactionReportResponseCodeType">
+		<restriction base="token">
+			<enumeration value="I">
+				<annotation>
+					<documentation>Initial</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C">
+				<annotation>
+					<documentation>Correction</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R">
+				<annotation>
+					<documentation>Revision to Action</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O">
+				<annotation>
+					<documentation>Correction of Revision to Action</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="V">
+				<annotation>
+					<documentation>Void</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="A">
+				<annotation>
+					<documentation>Appeal</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TransactionQueryResponseCodeType">
+		<restriction base="token">
+			<enumeration value="I">
+				<annotation>
+					<documentation>Initial</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C">
+				<annotation>
+					<documentation>Correction</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R">
+				<annotation>
+					<documentation>Revision to Action</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O">
+				<annotation>
+					<documentation>Correction of Revision to Action</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="A">
+				<annotation>
+					<documentation>Appeal</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<complexType name="ErrorType">
+		<sequence>
+			<element name="code" minOccurs="0">
+				<simpleType>
+					<restriction base="token">
+						<length value="2"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="message">
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="4000"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="AmountType">
+		<restriction base="token">
+			<pattern value="\d{1,9}\.\d\d"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="EntityNameType">
+		<restriction base="token">
+			<maxLength value="60"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="AdditionalEntityNameType">
+		<restriction base="token">
+			<maxLength value="100"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OfficeOrNameType">
+		<restriction base="token">
+			<maxLength value="40"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TitleOrDeptType">
+		<restriction base="token">
+			<maxLength value="40"/>
+		</restriction>
+	</simpleType>
+	<complexType name="CreditCardPaymentType">
+		<sequence>
+			<element name="number">
+				<simpleType>
+					<annotation>
+						<documentation>Credit Card Number</documentation>
+					</annotation>
+					<restriction base="token">
+						<minLength value="12"/>
+						<maxLength value="16"/>
+						<pattern value="[\*\d]{8,12}\d{4}"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="expirationDate" type="date"/>
+			<element name="cardholderName">
+				<simpleType>
+					<restriction base="token">
+						<maxLength value="100"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="cardholderAddress" type="ad:addressType"/>
+		</sequence>
+	</complexType>
+	<complexType name="PaymentType">
+		<choice>
+			<element name="EFT" type="boolean">
+				<annotation>
+					<documentation>Electronic Funds Transfer</documentation>
+				</annotation>
+			</element>
+			<element name="creditCard" type="rqc:CreditCardPaymentType"/>
+		</choice>
+	</complexType>
+</schema>

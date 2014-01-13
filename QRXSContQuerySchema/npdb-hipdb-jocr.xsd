@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/JOCR" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:rqs="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns:rqc="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns:jocr="http://www.npdb-hipdb.hrsa.gov/JOCR" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.05" jaxb:version="1.0">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" schemaLocation="npdb-hipdb-report-query-subject.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" schemaLocation="npdb-hipdb-report-query-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <simpleType name="JOCRAction">
+        <restriction base="token">
+            <length value="2"/>
+            <enumeration value="10">
+                <annotation>
+                    <documentation>Criminal Conviction</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="20">
+                <annotation>
+                    <documentation>Deferred Conviction/Pre-Trial Diversion</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="30">
+                <annotation>
+                    <documentation>Nolo Contendere (No Contest) Plea</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="40">
+                <annotation>
+                    <documentation>Civil Judgment</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="50">
+                <annotation>
+                    <documentation>Injunction</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="JurisdictionType">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>State/Local Court</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="F">
+                <annotation>
+                    <documentation>Federal Court</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="VenueNameType">
+        <restriction base="token">
+            <maxLength value="40"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FileNumberType">
+        <annotation>
+            <documentation>Docket/Court File Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="15"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="ProsecutorType">
+        <annotation>
+            <documentation>Prosecuting Agency or Civil Plaintiff</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="40"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="CaseNumberType">
+        <restriction base="token">
+            <maxLength value="25"/>
+        </restriction>
+    </simpleType>
+    <complexType name="InvestigatingAgencyType">
+        <annotation>
+            <documentation>INVTG</documentation>
+        </annotation>
+        <sequence>
+            <element name="agencyName">
+                <simpleType>
+                  <restriction base="token">
+                    <maxLength value="60" />
+                  </restriction>
+                </simpleType>
+            </element>
+            <element name="caseNumber">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="15"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="StatutoryOffenseType">
+        <annotation>
+            <documentation>STATOC</documentation>
+        </annotation>
+        <sequence>
+            <element name="statuteTitleSection">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="80"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="statutoryOffense">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="80"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="count">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="3"/>
+                        <pattern value="\d*"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="ActOmissionType">
+        <annotation>
+            <documentation>AOCD</documentation>
+        </annotation>
+        <sequence>
+            <element name="actOmissionCode">
+                <simpleType>
+                    <restriction base="token">
+                        <enumeration value="200">
+                            <annotation>
+                                <documentation>Fraudulent Billing/Cost Reporting</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="205">
+                            <annotation>
+                                <documentation>Billing for Services Not Rendered/Supplies Not Provided</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="207">
+                            <annotation>
+                                <documentation>Misrepresentation of Services/Supplies Provided</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="210">
+                            <annotation>
+                                <documentation>Duplicate Billing</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="220">
+                            <annotation>
+                                <documentation>Unbundling of Services</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="222">
+                            <annotation>
+                                <documentation>Upcoding of Services</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="230">
+                            <annotation>
+                                <documentation>Fraudulent Cost Reporting</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="240">
+                            <annotation>
+                                <documentation>Medicare/Medicaid Secondary Payor Fraud</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="250">
+                            <annotation>
+                                <documentation>Submitting Claims After Sanctions</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="260">
+                            <annotation>
+                                <documentation>Overcharging</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="270">
+                            <annotation>
+                                <documentation>Failure to Pay Non-Assigned Claim</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="300">
+                            <annotation>
+                                <documentation>Patient Abuse</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="305">
+                            <annotation>
+                                <documentation>Theft or Misappropriation of Patient Property</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="310">
+                            <annotation>
+                                <documentation>Billing for Medically Unnecessary Services</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="320">
+                            <annotation>
+                                <documentation>Poor Quality of Care</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="350">
+                            <annotation>
+                                <documentation>Failure to Provide Medically Necessary Care</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="400">
+                            <annotation>
+                                <documentation>Licensed Practitioner Impersonation/Allowing Unlicensed Persons to Practice</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="500">
+                            <annotation>
+                                <documentation>Procurement Fraud</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="525">
+                            <annotation>
+                                <documentation>Research Fraud</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="550">
+                            <annotation>
+                                <documentation>Medical Record Falsification</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="551">
+                            <annotation>
+                                <documentation>Creating Medical Record for Patient Who Does Not Exist</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="552">
+                            <annotation>
+                                <documentation>Alteration/Misrepresentation of Medical Record</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="600">
+                            <annotation>
+                                <documentation>Anti-Competition Violation/Deceptive Advertising</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="700">
+                            <annotation>
+                                <documentation>Controlled Substances Violation</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="710">
+                            <annotation>
+                                <documentation>Mislabeling Drugs</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="720">
+                            <annotation>
+                                <documentation>Generic Substitutions</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="730">
+                            <annotation>
+                                <documentation>Prescription Splitting</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="735">
+                            <annotation>
+                                <documentation>Prescription Shorting</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="740">
+                            <annotation>
+                                <documentation>Drug Diversion</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="750">
+                            <annotation>
+                                <documentation>Forged/Altered Prescription Drugs</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="760">
+                            <annotation>
+                                <documentation>Illegal Prescription of Controlled Substance</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="770">
+                            <annotation>
+                                <documentation>Counterfeiting Drugs</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="780">
+                            <annotation>
+                                <documentation>Illegal Drug Use/Possession</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="790">
+                            <annotation>
+                                <documentation>Illegal Drug Trafficking</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="810">
+                            <annotation>
+                                <documentation>Kickbacks</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="820">
+                            <annotation>
+                                <documentation>Self-Referral Violations</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="999">
+                            <annotation>
+                                <documentation>Other Act/Omission - Not Classified, Specify</documentation>
+                            </annotation>
+                        </enumeration>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="actOmissionDesc" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="40"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="SentenceJudgmentType">
+        <annotation>
+            <documentation>SJ</documentation>
+        </annotation>
+        <sequence>
+            <element name="restitutionAmount" type="rqc:AmountType" minOccurs="0"/>
+            <element name="otherSentenceJudgmentAmount" type="rqc:AmountType" minOccurs="0"/>
+            <element name="incarcerationLength" type="duration" minOccurs="0"/>
+            <element name="suspendedSentenceLength" type="duration" minOccurs="0"/>
+            <element name="homeDetentionLength" type="duration" minOccurs="0"/>
+            <element name="probationLength" type="duration" minOccurs="0"/>
+            <element name="communityServiceHours" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="5"/>
+                        <pattern value="\d*"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="otherCourtOrders" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="160"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="JOCRActionDataType">
+        <annotation>
+            <documentation>JOCR Base Type</documentation>
+        </annotation>
+        <sequence>
+            <element name="action" type="jocr:JOCRAction"/>
+            <element name="jurisdiction" type="jocr:JurisdictionType"/>
+            <element name="venueName" type="jocr:VenueNameType"/>
+            <element name="venueCity" type="ad:cityType"/>
+            <element name="venueState" type="ad:stateType"/>
+            <element name="fileNumber" type="jocr:FileNumberType"/>
+            <element name="prosecutor" type="jocr:ProsecutorType"/>
+            <element name="caseNumber" type="jocr:CaseNumberType" minOccurs="0"/>
+            <element name="investigatingAgency" type="jocr:InvestigatingAgencyType" minOccurs="0" maxOccurs="4"/>
+            <element name="statutoryOffense" type="jocr:StatutoryOffenseType" maxOccurs="5"/>
+            <element name="narrative" type="rqc:NarrativeType"/>
+            <element name="actOmission" type="jocr:ActOmissionType" maxOccurs="5"/>
+            <element name="judgmentOrSentenceDate" type="date"/>
+            <element name="appeal" type="rqc:ActionAppealType"/>
+            <element name="sentenceOrJudgment" type="jocr:SentenceJudgmentType" maxOccurs="5"/>
+        </sequence>
+    </complexType>
+    <complexType name="JOCRReportType">
+        <sequence>
+            <element name="certification" type="rqc:CertificationType"/>
+            <element name="customerUse" type="co:CustomerUseType" minOccurs="0"/>
+            <choice>
+                <element name="report">
+                    <annotation>
+                        <documentation>Initial, Correction, Revision to Action, or Correction of Revision to Action</documentation>
+                    </annotation>
+                    <complexType>
+                        <sequence>
+                            <choice>
+                                <annotation>
+                                    <documentation>Subject Information</documentation>
+                                </annotation>
+                                <element name="individual" type="rqs:QueryReportIndividualSubjectType"/>
+                                <element name="organization" type="rqs:QueryReportOrganizationSubjectType"/>
+                            </choice>
+                            <element name="entityReference" type="rqc:EntityReferenceType" minOccurs="0">
+                                <annotation>
+                                    <documentation>Entity Internal Report Reference</documentation>
+                                </annotation>
+                            </element>
+                            <element name="transaction" type="rqc:TransactionCodeType">
+                                <annotation>
+                                    <documentation>Initial, Correction, Revision to Action, Correction of Revision to Action</documentation>
+                                </annotation>
+                            </element>
+                            <element name="previousDCN" type="rqc:DCNType" minOccurs="0">
+                                <annotation>
+                                    <documentation>Omit for Initial</documentation>
+                                </annotation>
+                            </element>
+                            <element name="informationReported" type="jocr:JOCRActionDataType"/>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element name="void" type="rqc:VoidType"/>
+                <element name="appeal" type="rqc:AppealType"/>
+            </choice>
+        </sequence>
+    </complexType>
+    <complexType name="JOCRSubmissionFileType">
+        <sequence>
+            <element name="submitter" type="rqc:HeaderType"/>
+            <element name="submission" type="jocr:JOCRReportType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="JOCRSubmission" type="jocr:JOCRSubmissionFileType"/>
+</schema>

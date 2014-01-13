@@ -1,0 +1,395 @@
+<?xml version="1.0"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/Address" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.02">
+    <complexType name="addressType">
+        <annotation>
+            <documentation>For addresses outside the U.S. or its territories: Leave "state" blank, enter the city and/or province in the "city" field, enter the country code in the "zip" fields, enter the country in the "country" field.</documentation>
+            <documentation>For military addresses: Enter APO in "city" field, enter the APO/FPO code in the "state" field, enter the postal code in the "zip" field.</documentation>
+            <documentation>For U.S. Territories: Enter territory abbreviation in "state" field.</documentation>
+        </annotation>
+        <sequence>
+            <element name="address">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="40"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="address2" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="40"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="city" type="ad:cityType"/>
+            <element name="state" type="ad:stateType" minOccurs="0"/>
+            <element name="zip" type="ad:zipType" minOccurs="0"/>
+            <element name="zip4" type="ad:zip4Type" minOccurs="0"/>
+            <element name="country" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="20"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="affiliationAddressType">
+        <annotation>
+            <documentation>For addresses outside the U.S. or its territories: Leave "state" blank, enter the city and/or province in the "city" field, enter the country code in the "zip" fields, enter the country in the "country" field.</documentation>
+            <documentation>For military addresses: Enter APO in "city" field, enter the APO/FPO code in the "state" field, enter the postal code in the "zip" field.</documentation>
+            <documentation>For U.S. Territories: Enter territory abbreviation in "state" field.</documentation>
+        </annotation>
+        <sequence>
+            <element name="address" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="40"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="address2" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="40"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="city" type="ad:cityType"/>
+            <element name="state" type="ad:stateType" minOccurs="0"/>
+            <element name="zip" type="ad:zipType" minOccurs="0"/>
+            <element name="zip4" type="ad:zip4Type" minOccurs="0"/>
+            <element name="country" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="20"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <simpleType name="cityType">
+        <restriction base="token">
+            <maxLength value="28"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="stateType">
+        <restriction base="token">
+            <enumeration value="AL">
+                <annotation>
+                    <documentation>Alabama</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="AK">
+                <annotation>
+                    <documentation>Alaska</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="AZ">
+                <annotation>
+                    <documentation>Arizona</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="AR">
+                <annotation>
+                    <documentation>Arkansas</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="CA">
+                <annotation>
+                    <documentation>California</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="CO">
+                <annotation>
+                    <documentation>Colorado</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="CT">
+                <annotation>
+                    <documentation>Connecticut</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="DE">
+                <annotation>
+                    <documentation>Delaware</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="DC">
+                <annotation>
+                    <documentation>District of Columbia</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="FL">
+                <annotation>
+                    <documentation>Florida</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="GA">
+                <annotation>
+                    <documentation>Georgia</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="HI">
+                <annotation>
+                    <documentation>Hawaii</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="ID">
+                <annotation>
+                    <documentation>Idaho</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="IL">
+                <annotation>
+                    <documentation>Illinois</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="IN">
+                <annotation>
+                    <documentation>Indiana</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="IA">
+                <annotation>
+                    <documentation>Iowa</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="KS">
+                <annotation>
+                    <documentation>Kansas</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="KY">
+                <annotation>
+                    <documentation>Kentucky</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="LA">
+                <annotation>
+                    <documentation>Louisiana</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="ME">
+                <annotation>
+                    <documentation>Maine</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="MD">
+                <annotation>
+                    <documentation>Maryland</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="MA">
+                <annotation>
+                    <documentation>Massachusetts</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="MI">
+                <annotation>
+                    <documentation>Michigan</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="MN">
+                <annotation>
+                    <documentation>Minnesota</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="MS">
+                <annotation>
+                    <documentation>Mississippi</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="MO">
+                <annotation>
+                    <documentation>Missouri</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="MT">
+                <annotation>
+                    <documentation>Montana</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="NE">
+                <annotation>
+                    <documentation>Nebraska</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="NV">
+                <annotation>
+                    <documentation>Nevada</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="NH">
+                <annotation>
+                    <documentation>New Hampshire</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="NJ">
+                <annotation>
+                    <documentation>New Jersey</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="NM">
+                <annotation>
+                    <documentation>New Mexico</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="NY">
+                <annotation>
+                    <documentation>New York</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="NC">
+                <annotation>
+                    <documentation>North Carolina</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="ND">
+                <annotation>
+                    <documentation>North Dakota</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="OH">
+                <annotation>
+                    <documentation>Ohio</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="OK">
+                <annotation>
+                    <documentation>Oklahoma</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="OR">
+                <annotation>
+                    <documentation>Oregon</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="PA">
+                <annotation>
+                    <documentation>Pennsylvania</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="RI">
+                <annotation>
+                    <documentation>Rhode Island</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="SC">
+                <annotation>
+                    <documentation>South Carolina</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="SD">
+                <annotation>
+                    <documentation>South Dakota</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="TN">
+                <annotation>
+                    <documentation>Tennessee</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="TX">
+                <annotation>
+                    <documentation>Texas</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="UT">
+                <annotation>
+                    <documentation>Utah</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="VT">
+                <annotation>
+                    <documentation>Vermont</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="VA">
+                <annotation>
+                    <documentation>Virginia</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="WA">
+                <annotation>
+                    <documentation>Washington</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="WV">
+                <annotation>
+                    <documentation>West Virginia</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="WI">
+                <annotation>
+                    <documentation>Wisconsin</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="WY">
+                <annotation>
+                    <documentation>Wyoming</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="AS">
+                <annotation>
+                    <documentation>American Samoa</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="FM">
+                <annotation>
+                    <documentation>Federated States of Micronesia</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="GU">
+                <annotation>
+                    <documentation>Guam</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="MP">
+                <annotation>
+                    <documentation>Northern Marianas</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="PW">
+                <annotation>
+                    <documentation>Palau</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="PR">
+                <annotation>
+                    <documentation>Puerto Rico</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="VI">
+                <annotation>
+                    <documentation>Virgin Islands</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="AE">
+                <annotation>
+                    <documentation>Europe</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="AA">
+                <annotation>
+                    <documentation>Americas</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="AP">
+                <annotation>
+                    <documentation>Pacific</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="zipType">
+        <restriction base="token">
+            <maxLength value="5"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="zip4Type">
+        <restriction base="token">
+            <maxLength value="4"/>
+        </restriction>
+    </simpleType>
+</schema>

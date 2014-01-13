@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/PdsResponse" xmlns:mmpr="http://www.npdb-hipdb.hrsa.gov/MMPR" xmlns:aar="http://www.npdb-hipdb.hrsa.gov/AAR" xmlns:jocr="http://www.npdb-hipdb.hrsa.gov/JOCR" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:rqc="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:rqs="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns:qrc="http://www.npdb-hipdb.hrsa.gov/QueryResponseCommon" xmlns:pds="http://www.npdb-hipdb.hrsa.gov/Pds" xmlns:pdsr="http://www.npdb-hipdb.hrsa.gov/PdsResponse" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.06">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" schemaLocation="npdb-hipdb-report-query-subject.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" schemaLocation="npdb-hipdb-report-query-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/QueryResponseCommon" schemaLocation="npdb-hipdb-query-response-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Pds" schemaLocation="npdb-hipdb-pds.xsd"/>
+    <complexType name="PdsSubjectResponseType">
+        <sequence>
+            <element name="status" type="rqc:TransactionStatusType"/>
+            <element name="individual" type="pds:PdsIndividualSubjectType"/>
+            <element name="monitoredUnder" type="co:Statutes"/>
+            <element name="enrollmentStatus" type="pdsr:PdsEnrollmentStatusType" maxOccurs="2"/>
+            <element name="reportsIncluded" type="boolean">
+                <annotation>
+                    <documentation>Some PDS actions will not include reports in the response</documentation>
+                </annotation>
+            </element>
+            <element name="report" type="qrc:ReportOutputType" minOccurs="0" maxOccurs="unbounded">
+                <annotation>
+                    <documentation>Reports found</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="PdsEnrollmentStatusType">
+        <sequence>
+            <element name="dataBank">
+                <simpleType>
+                    <restriction base="token">
+                        <length value="1"/>
+                        <enumeration value="N">
+                            <annotation>
+                                <documentation source="NPDB"/>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="H">
+                            <annotation>
+                                <documentation source="HIPDB"/>
+                            </annotation>
+                        </enumeration>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="status" type="pdsr:PdsEnrollmentStatus"/>
+            <element name="startDate" type="date" minOccurs="0"/>
+            <element name="endDate" type="date" minOccurs="0"/>
+            <element name="cancelOnDate" type="date" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <simpleType name="PdsEnrollmentStatus">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="E">
+                <annotation>
+                    <documentation>Enrolled</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="N">
+                <annotation>
+                    <documentation>Not Enrolled</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>Suspended</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="C">
+                <annotation>
+                    <documentation>Previously Enrolled</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="P">
+                <annotation>
+                    <documentation>Pending</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <complexType name="PdsResponseFileType">
+        <sequence>
+            <element name="submitter" type="rqc:HeaderType"/>
+            <element name="submissionFilename" type="qrc:SubmissionFilenameType"/>
+            <element name="certification" type="rqc:CertificationType"/>
+            <element name="batchStatus" type="rqc:TransactionStatusType"/>
+            <choice minOccurs="0">
+                <element name="chargeReceipt" type="qrc:DataBankChargeType" maxOccurs="2"/>
+                <element name="chargeReference" type="qrc:ChargeReferenceType" maxOccurs="2">
+                    <annotation>
+                        <documentation>If subjects were previously charged</documentation>
+                    </annotation>
+                </element>
+            </choice>
+            <element name="pdsSubjectResponse" type="pdsr:PdsSubjectResponseType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="pdsResponse" type="pdsr:PdsResponseFileType"/>
+    <complexType name="PdsConfirmationFileType">
+        <sequence>
+            <element name="submitter" type="rqc:HeaderType"/>
+            <element name="submissionFilename" type="qrc:SubmissionFilenameType"/>
+            <element name="certification" type="rqc:CertificationType"/>
+            <element name="batchStatus" type="rqc:TransactionStatusType"/>
+            <element name="subjectConfirmation" type="pdsr:PdsSubjectConfirmationType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="PdsSubjectConfirmationType">
+        <sequence>
+            <element name="accepted" type="boolean"/>
+            <element name="dcn" type="rqc:DCNType" minOccurs="0"/>
+            <element name="error" type="rqc:ErrorType" minOccurs="0" maxOccurs="unbounded"/>
+            <choice>
+                <element name="individual" type="pds:PdsIndividualSubjectType"/>
+                <element name="id" type="pds:PdsSubjectID"/>
+            </choice>
+        </sequence>
+    </complexType>
+    <element name="pdsConfirmation" type="pdsr:PdsConfirmationFileType"/>
+    <complexType name="ReportDisclosureNotificationFileType">
+        <sequence>
+            <element name="reportDisclosureInformation" type="qrc:ReportInformationType"/>
+            <element name="disclosureType" type="qrc:DisclosureSourceType">
+                <annotation>
+                    <documentation>Reason for disclosure</documentation>
+                </annotation>
+            </element>
+            <element name="previousDisclosureDate" type="date" minOccurs="0">
+                <annotation>
+                    <documentation>Indicates if and when this report was previously disclosed</documentation>
+                </annotation>
+            </element>
+            <element name="individual" type="pds:PdsIndividualSubjectType"/>
+            <choice minOccurs="0">
+                <element name="report" type="qrc:ReportOutputType"/>
+                <element name="void" type="rqc:VoidType"/>
+            </choice>
+        </sequence>
+    </complexType>
+    <element name="reportDisclosureNotification" type="pdsr:ReportDisclosureNotificationFileType"/>
+</schema>

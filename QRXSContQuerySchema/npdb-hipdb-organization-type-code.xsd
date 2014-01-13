@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/OrganizationCode" xmlns:orgcd="http://www.npdb-hipdb.hrsa.gov/OrganizationCode" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.01">
+    <simpleType name="organizationCodeType">
+        <restriction base="token">
+            <enumeration value="361">
+                <annotation>
+                    <documentation>Group or Practice</documentation>
+                    <documentation>Chiropractic Group/Practice</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="362">
+                <annotation>
+                    <documentation>Group or Practice</documentation>
+                    <documentation>Dental Group/Practice</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="365">
+                <annotation>
+                    <documentation>Group or Practice</documentation>
+                    <documentation>Medical Group/Practice</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="366">
+                <annotation>
+                    <documentation>Group or Practice</documentation>
+                    <documentation>Mental Health/Substance Abuse Group/Practice</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="363">
+                <annotation>
+                    <documentation>Group or Practice</documentation>
+                    <documentation>Optician/Optometric Group/Practice</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="367">
+                <annotation>
+                    <documentation>Group or Practice</documentation>
+                    <documentation>Physical/Occupational Therapy Group/Practice</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="364">
+                <annotation>
+                    <documentation>Group or Practice</documentation>
+                    <documentation>Podiatric Group/Practice</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="393">
+                <annotation>
+                    <documentation>Home Health Agency/Organization</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="382">
+                <annotation>
+                    <documentation>Hospice/Hospice Care Provider</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="301">
+                <annotation>
+                    <documentation>Hospital</documentation>
+                    <documentation>General/Acute Care Hospital</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="302">
+                <annotation>
+                    <documentation>Hospital</documentation>
+                    <documentation>Psychiatric Hospital</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="303">
+                <annotation>
+                    <documentation>Hospital</documentation>
+                    <documentation>Rehabilitation Hospital</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="304">
+                <annotation>
+                    <documentation>Hospital</documentation>
+                    <documentation>Federal Hospital</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="307">
+                <annotation>
+                    <documentation>Hospital Unit</documentation>
+                    <documentation>Psychiatric Unit</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="308">
+                <annotation>
+                    <documentation>Hospital Unit</documentation>
+                    <documentation>Rehabilitation Unit</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="310">
+                <annotation>
+                    <documentation>Laboratory/CLIA Laboratory</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="389">
+                <annotation>
+                    <documentation>Nursing Facility/Skilled Nursing Facility</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="370">
+                <annotation>
+                    <documentation>Research Center/Facility</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="381">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Adult Day Care Facility</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="391">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Ambulatory Surgical Center</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="392">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Ambulatory Clinic/Center</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="398">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>End Stage Renal Disease Facility</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="394">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Health Center/Federally Qualified Health Center/Community Health Center</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="383">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Intermediate Care Facility for Mentally Retarded/Substance Abuse</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="397">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Mammography Service Provider</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="395">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Mental Health Center/Community Mental Health Center</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="388">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Outpatient Rehabilitation Facility/Comprehensive Outpatient Rehabilitation Facility</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="399">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Radiology/Imaging Center</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="386">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Residential Treatment Facility/Program</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="396">
+                <annotation>
+                    <documentation>Other Health Care Facility</documentation>
+                    <documentation>Rural Health Clinic</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="331">
+                <annotation>
+                    <documentation>Managed Health Care Organization</documentation>
+                    <documentation>Health Maintenance Organization</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="335">
+                <annotation>
+                    <documentation>Managed Health Care Organization</documentation>
+                    <documentation>Preferred Provider Organization</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="336">
+                <annotation>
+                    <documentation>Managed Health Care Organization</documentation>
+                    <documentation>Provider Sponsored Organization</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="338">
+                <annotation>
+                    <documentation>Managed Health Care Organization</documentation>
+                    <documentation>Religious, Fraternal Benefit Society Plan</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="320">
+                <annotation>
+                    <documentation>Health Insurance Company/Provider</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="347">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Biological Products Manufacturer</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="342">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Blood Bank</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="343">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Durable Medical Equipment Supplier</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="351">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Fiscal/Billing/Management Agent</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="353">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Nursing/Health Care Staffing Service</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="348">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Organ Procurement Organization</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="344">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Eyewear Equipment Supplier</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="345">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Pharmacy</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="346">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Pharmaceutical Manufacturer</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="349">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Portable X-Ray Supplier</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="352">
+                <annotation>
+                    <documentation>Health Care Supplier/Manufacturer</documentation>
+                    <documentation>Purchasing Service</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="390">
+                <annotation>
+                    <documentation>Ambulance Service/Transportation Company</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="999">
+                <annotation>
+                    <documentation>Other Type - Not Classified, Description Required</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+</schema>

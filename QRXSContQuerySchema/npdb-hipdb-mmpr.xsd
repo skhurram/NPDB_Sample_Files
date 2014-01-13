@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/MMPR" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:rqs="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns:rqc="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns:mmpr="http://www.npdb-hipdb.hrsa.gov/MMPR" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.05">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" schemaLocation="npdb-hipdb-report-query-subject.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" schemaLocation="npdb-hipdb-report-query-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <simpleType name="RelationshipOfEntityType">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="P">
+                <annotation>
+                    <documentation>Insurance Company - Primary Insurer</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="E">
+                <annotation>
+                    <documentation>Insurance Company - Excess Insurer</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>Self-Insured Organization</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="G">
+                <annotation>
+                    <documentation>Insurance Guaranty Fund</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="M">
+                <annotation>
+                    <documentation>State Medical Malpractice Payment Fund as the Primary Payer for This Practitioner</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="O">
+                <annotation>
+                    <documentation>State Medical Malpractice Payment Fund as a Secondary Payer for This Practitioner</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="LegacyRelationshipOfEntityType">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="I">
+                <annotation>
+                    <documentation>Insurance Company</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>Self-Insured Organization</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="O">
+                <annotation>
+                    <documentation>Other - Guaranty Fund</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="PaymentType">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>A Single Final Payment</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="M">
+                <annotation>
+                    <documentation>One of Multiple Payments</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="PaymentResultType">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="J">
+                <annotation>
+                    <documentation>Judgment</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>Settlement</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="B">
+                <annotation>
+                    <documentation>Payment Prior to Settlement</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="LegacyPaymentResultType">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="J">
+                <annotation>
+                    <documentation>Judgment</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>Settlement</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="B">
+                <annotation>
+                    <documentation>Payment Prior to Settlement</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="U">
+                <annotation>
+                    <documentation>Unknown</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="O">
+                <annotation>
+                    <documentation>Other</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="AdjudicativeBodyCaseNumberType">
+        <restriction base="token">
+            <maxLength value="20"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="AdjudicativeBodyNameType">
+        <restriction base="token">
+            <maxLength value="60"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="CourtFileNumberType">
+        <restriction base="token">
+            <maxLength value="10"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="NumberPractitionersType">
+        <restriction base="token">
+            <maxLength value="3"/>
+            <pattern value="\d*"/>
+        </restriction>
+    </simpleType>
+    <complexType name="PaymentByOtherType">
+        <sequence>
+            <element name="paymentMade" type="co:YesNoUnknown" minOccurs="0"/>
+            <element name="amountPaid" type="rqc:AmountType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <complexType name="PatientAgeType">
+        <choice>
+            <element name="days">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="2"/>
+                        <pattern value="\d*"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="months">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="2"/>
+                        <pattern value="\d*"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="years">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="3"/>
+                        <pattern value="\d*"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="unknown" type="boolean"/>
+        </choice>
+    </complexType>
+    <simpleType name="PatientType">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="I">
+                <annotation>
+                    <documentation>Inpatient</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="O">
+                <annotation>
+                    <documentation>Outpatient</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="B">
+                <annotation>
+                    <documentation>Both</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="U">
+                <annotation>
+                    <documentation>Unknown</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="MedicalConditionDescType">
+        <restriction base="normalizedString">
+            <maxLength value="4000"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="ProcedureDescType">
+        <restriction base="normalizedString">
+            <maxLength value="4000"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="NatureAllegationType">
+        <restriction base="token">
+            <enumeration value="010">
+                <annotation>
+                    <documentation>Anesthesia Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="100">
+                <annotation>
+                    <documentation>Behavioral Health Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="001">
+                <annotation>
+                    <documentation>Diagnosis Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="080">
+                <annotation>
+                    <documentation>Equipment/Product Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="040">
+                <annotation>
+                    <documentation>IV and Blood Products Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="030">
+                <annotation>
+                    <documentation>Medication Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="070">
+                <annotation>
+                    <documentation>Monitoring Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="050">
+                <annotation>
+                    <documentation>Obstetrics Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="020">
+                <annotation>
+                    <documentation>Surgery Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="060">
+                <annotation>
+                    <documentation>Treatment Related</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="090">
+                <annotation>
+                    <documentation>Other Miscellaneous</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <complexType name="SpecificAllegationType">
+        <sequence>
+            <element name="code">
+                <simpleType>
+                    <restriction base="token">
+                        <enumeration value="100">
+                            <annotation>
+                                <documentation>Failure to Use Aseptic Technique</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="101">
+                            <annotation>
+                                <documentation>Failure to Diagnose</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="102">
+                            <annotation>
+                                <documentation>Failure to Delay a Case When Indicated</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="103">
+                            <annotation>
+                                <documentation>Failure to Identify Fetal Distress</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="104">
+                            <annotation>
+                                <documentation>Failure to Treat Fetal Distress</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="105">
+                            <annotation>
+                                <documentation>Failure to Medicate</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="106">
+                            <annotation>
+                                <documentation>Failure to Monitor</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="107">
+                            <annotation>
+                                <documentation>Failure to Order Appropriate Medication</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="108">
+                            <annotation>
+                                <documentation>Failure to Order Appropriate Test</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="109">
+                            <annotation>
+                                <documentation>Failure to Perform Preoperative Evaluation</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="110">
+                            <annotation>
+                                <documentation>Failure to Perform Procedure</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="111">
+                            <annotation>
+                                <documentation>Failure to Perform Resuscitation</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="112">
+                            <annotation>
+                                <documentation>Failure to Recognize a Complication</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="113">
+                            <annotation>
+                                <documentation>Failure to Treat</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="200">
+                            <annotation>
+                                <documentation>Delay in Diagnosis</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="201">
+                            <annotation>
+                                <documentation>Delay in Performance</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="202">
+                            <annotation>
+                                <documentation>Delay in Treatment</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="203">
+                            <annotation>
+                                <documentation>Delay in Treatment of Identified Fetal Distress</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="300">
+                            <annotation>
+                                <documentation>Administration of Blood or Fluids Problem</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="301">
+                            <annotation>
+                                <documentation>Agent Use or Selection Error</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="302">
+                            <annotation>
+                                <documentation>Complementary or Alternative Medication Problem</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="303">
+                            <annotation>
+                                <documentation>Equipment Utilization Problem</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="304">
+                            <annotation>
+                                <documentation>Improper Choice of Delivery Method</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="305">
+                            <annotation>
+                                <documentation>Improper Management</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="306">
+                            <annotation>
+                                <documentation>Improper Performance</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="307">
+                            <annotation>
+                                <documentation>Improperly Performed C-Section</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="308">
+                            <annotation>
+                                <documentation>Improperly Performed Vaginal Delivery</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="309">
+                            <annotation>
+                                <documentation>Improperly Performed Resuscitation</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="310">
+                            <annotation>
+                                <documentation>Improperly Performed Test</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="311">
+                            <annotation>
+                                <documentation>Improper Technique</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="312">
+                            <annotation>
+                                <documentation>Intubation Problem</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="313">
+                            <annotation>
+                                <documentation>Laboratory Error</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="314">
+                            <annotation>
+                                <documentation>Pathology Error</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="315">
+                            <annotation>
+                                <documentation>Medication Administered via Wrong Route</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="316">
+                            <annotation>
+                                <documentation>Patient History, Exam, or Workup Problem</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="317">
+                            <annotation>
+                                <documentation>Problems With Patient Monitoring in Recovery</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="318">
+                            <annotation>
+                                <documentation>Patient Monitoring Problem</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="319">
+                            <annotation>
+                                <documentation>Patient Positioning Problem</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="320">
+                            <annotation>
+                                <documentation>Problem with Appliance, Prostheses, Orthotic, Restorative, Splint, Device, etc.</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="321">
+                            <annotation>
+                                <documentation>Radiology or Imaging Error</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="322">
+                            <annotation>
+                                <documentation>Surgical or Other Foreign Body Retained</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="323">
+                            <annotation>
+                                <documentation>Wrong Diagnosis or Misdiagnosis</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="324">
+                            <annotation>
+                                <documentation>Wrong Dosage Administered</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="325">
+                            <annotation>
+                                <documentation>Wrong Dosage Dispensed</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="326">
+                            <annotation>
+                                <documentation>Wrong Dosage Ordered of Correct Medication</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="327">
+                            <annotation>
+                                <documentation>Wrong Medication Administered</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="328">
+                            <annotation>
+                                <documentation>Wrong Medication Dispensed</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="329">
+                            <annotation>
+                                <documentation>Wrong Medication Ordered</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="330">
+                            <annotation>
+                                <documentation>Wrong Body Part</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="331">
+                            <annotation>
+                                <documentation>Wrong Blood Type</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="332">
+                            <annotation>
+                                <documentation>Wrong Equipment</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="333">
+                            <annotation>
+                                <documentation>Wrong Patient</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="334">
+                            <annotation>
+                                <documentation>Wrong Procedure or Treatment</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="400">
+                            <annotation>
+                                <documentation>Contraindicated Procedure</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="401">
+                            <annotation>
+                                <documentation>Surgical or Procedural Clearance Contraindicated</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="402">
+                            <annotation>
+                                <documentation>Unnecessary Procedure</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="403">
+                            <annotation>
+                                <documentation>Unnecessary Test</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="404">
+                            <annotation>
+                                <documentation>Unnecessary Treatment</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="500">
+                            <annotation>
+                                <documentation>Communication Problem Between Practitioners</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="501">
+                            <annotation>
+                                <documentation>Failure to Instruct or Communicate with Patient or Family</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="502">
+                            <annotation>
+                                <documentation>Failure to Report on Patient Condition</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="503">
+                            <annotation>
+                                <documentation>Failure to Respond to Patient</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="504">
+                            <annotation>
+                                <documentation>Failure to Supervise</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="505">
+                            <annotation>
+                                <documentation>Improper Supervision</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="600">
+                            <annotation>
+                                <documentation>Failure/Delay in Admission to Hospital or Institution</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="601">
+                            <annotation>
+                                <documentation>Failure/Delay in Referral or Consultation</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="602">
+                            <annotation>
+                                <documentation>Premature Discharge from Institution</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="603">
+                            <annotation>
+                                <documentation>Altered, Misplaced or Prematurely Destroyed Records</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="700">
+                            <annotation>
+                                <documentation>Abandonment</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="701">
+                            <annotation>
+                                <documentation>Assault and Battery</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="702">
+                            <annotation>
+                                <documentation>Breach of Contract or Warranty</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="703">
+                            <annotation>
+                                <documentation>Breach of Patient Confidentiality</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="704">
+                            <annotation>
+                                <documentation>Equipment Malfunction</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="705">
+                            <annotation>
+                                <documentation>Failure to Conform with Regulation, Statute, or Rule</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="706">
+                            <annotation>
+                                <documentation>Failure to Ensure Patient Safety</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="707">
+                            <annotation>
+                                <documentation>Failure to Obtain Consent or Lack of Informed Consent</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="708">
+                            <annotation>
+                                <documentation>Failure to Protect a Third Party</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="709">
+                            <annotation>
+                                <documentation>Failure to Test Equipment</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="710">
+                            <annotation>
+                                <documentation>False Imprisonment</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="711">
+                            <annotation>
+                                <documentation>Improper Conduct</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="712">
+                            <annotation>
+                                <documentation>Inadequate Utilization Review</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="713">
+                            <annotation>
+                                <documentation>Negligent Credentialing</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="714">
+                            <annotation>
+                                <documentation>Practitioner with Communicable Disease</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="715">
+                            <annotation>
+                                <documentation>Product Liability</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="716">
+                            <annotation>
+                                <documentation>Religious Issues</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="717">
+                            <annotation>
+                                <documentation>Sexual Misconduct</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="718">
+                            <annotation>
+                                <documentation>Third Party Claimant</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="719">
+                            <annotation>
+                                <documentation>Vicarious Liability</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="720">
+                            <annotation>
+                                <documentation>Wrongful Life/Birth</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="899">
+                            <annotation>
+                                <documentation>Cannot Be Determined from Available Records</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="999">
+                            <annotation>
+                                <documentation>Allegation Not Otherwise Classified, Specify</documentation>
+                            </annotation>
+                        </enumeration>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="otherDesc">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="60"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="date" type="date"/>
+        </sequence>
+    </complexType>
+    <complexType name="LegacyActOrOmissionType">
+        <sequence>
+            <element name="code" minOccurs="0">
+                <annotation>
+                    <documentation>ACTN_CD</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="token">
+                        <length value="3"/>
+                        <pattern value="\d{3}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="date" type="date" minOccurs="0">
+                <annotation>
+                    <documentation>ACTN_DTE</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <simpleType name="OutcomeType">
+        <restriction base="token">
+            <enumeration value="01">
+                <annotation>
+                    <documentation>Emotional Injury Only</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="02">
+                <annotation>
+                    <documentation>Insignificant Injury</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="03">
+                <annotation>
+                    <documentation>Minor Temporary Injury</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="04">
+                <annotation>
+                    <documentation>Major Temporary Injury</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="05">
+                <annotation>
+                    <documentation>Minor Permanent Injury</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="06">
+                <annotation>
+                    <documentation>Significant Permanent Injury</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="07">
+                <annotation>
+                    <documentation>Major Permanent Injury</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="08">
+                <annotation>
+                    <documentation>Grave Permanent Injury, such as quadriplegic or brain damage, requiring lifelong dependent care</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="09">
+                <annotation>
+                    <documentation>Death</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="10">
+                <annotation>
+                    <documentation>Cannot Be Determined From Available Records</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <complexType name="MMPRActionDataType">
+        <annotation>
+            <documentation>MMPR Base Type</documentation>
+        </annotation>
+        <sequence>
+            <element name="relationshipOfEntity" type="mmpr:RelationshipOfEntityType"/>
+            <element name="paymentForThisPractitioner" type="rqc:AmountType"/>
+            <element name="paymentDate" type="date"/>
+            <element name="paymentType" type="mmpr:PaymentType"/>
+            <element name="totalPaymentForThisPractitioner" type="rqc:AmountType"/>
+            <element name="paymentResultOf" type="mmpr:PaymentResultType" minOccurs="0"/>
+            <element name="judgmentOrSettlementDate" type="date" minOccurs="0"/>
+            <element name="adjudicativeBodyCaseNumber" type="mmpr:AdjudicativeBodyCaseNumberType" minOccurs="0"/>
+            <element name="adjudicativeBodyName" type="mmpr:AdjudicativeBodyNameType" minOccurs="0"/>
+            <element name="courtFileNumber" type="mmpr:CourtFileNumberType" minOccurs="0"/>
+            <element name="judgmentOrSettlementDesc" type="rqc:NarrativeType"/>
+            <element name="totalPaymentForAllPractitioners" type="rqc:AmountType" minOccurs="0"/>
+            <element name="numberPractitioners" type="mmpr:NumberPractitionersType" minOccurs="0"/>
+            <element name="stateFundPayment" type="mmpr:PaymentByOtherType" minOccurs="0"/>
+            <element name="selfInsuredOrgPayment" type="mmpr:PaymentByOtherType" minOccurs="0"/>
+            <element name="patientAge" type="mmpr:PatientAgeType"/>
+            <element name="patientGender" type="co:genderType"/>
+            <element name="patientType" type="mmpr:PatientType"/>
+            <element name="medicalConditionDesc" type="mmpr:MedicalConditionDescType"/>
+            <element name="procedureDesc" type="mmpr:ProcedureDescType"/>
+            <element name="natureAllegation" type="mmpr:NatureAllegationType"/>
+            <element name="specificAllegation" type="mmpr:SpecificAllegationType" maxOccurs="2"/>
+            <element name="outcome" type="mmpr:OutcomeType"/>
+            <element name="allegationsDesc" type="rqc:NarrativeType"/>
+        </sequence>
+    </complexType>
+    <complexType name="LegacyMMPRActionDataType">
+        <annotation>
+            <documentation>Legacy MMPR Base Type</documentation>
+        </annotation>
+        <sequence>
+            <element name="relationshipOfEntity" type="mmpr:LegacyRelationshipOfEntityType">
+                <annotation>
+                    <documentation>REL_OF_ENTY</documentation>
+                </annotation>
+            </element>
+            <element name="actOrOmission" type="mmpr:LegacyActOrOmissionType" minOccurs="0" maxOccurs="2"/>
+            <element name="paymentDate" type="date" minOccurs="0">
+                <annotation>
+                    <documentation>PYMT_DTE</documentation>
+                </annotation>
+            </element>
+            <element name="paymentForThisPractitioner" type="rqc:AmountType" minOccurs="0">
+                <annotation>
+                    <documentation>AMT_PD</documentation>
+                </annotation>
+            </element>
+            <element name="paymentType" type="mmpr:PaymentType" minOccurs="0">
+                <annotation>
+                    <documentation>PYMT_TYP</documentation>
+                </annotation>
+            </element>
+            <element name="totalPaymentForThisPractitioner" type="rqc:AmountType" minOccurs="0">
+                <annotation>
+                    <documentation>TOT_PYMT_AMT</documentation>
+                </annotation>
+            </element>
+            <element name="numberPractitioners" type="mmpr:NumberPractitionersType" minOccurs="0">
+                <annotation>
+                    <documentation>NBR_OF_PRACS</documentation>
+                </annotation>
+            </element>
+            <element name="paymentResultOf" type="mmpr:LegacyPaymentResultType" minOccurs="0">
+                <annotation>
+                    <documentation>PYMT_RESULT_OF</documentation>
+                </annotation>
+            </element>
+            <element name="judgmentOrSettlementDate" type="date" minOccurs="0">
+                <annotation>
+                    <documentation>JUDGMNT_DTE</documentation>
+                </annotation>
+            </element>
+            <element name="adjudicativeBodyCaseNumber" type="mmpr:AdjudicativeBodyCaseNumberType" minOccurs="0">
+                <annotation>
+                    <documentation>ADJ_BODY_CASE_NBR</documentation>
+                </annotation>
+            </element>
+            <element name="adjudicativeBodyName" type="mmpr:AdjudicativeBodyNameType" minOccurs="0">
+                <annotation>
+                    <documentation>ADJ_BODY_NM</documentation>
+                </annotation>
+            </element>
+            <element name="courtFileNumber" type="mmpr:CourtFileNumberType" minOccurs="0">
+                <annotation>
+                    <documentation>COURT_FILE_NBR</documentation>
+                </annotation>
+            </element>
+            <element name="actOrOmissionDesc" type="rqc:NarrativeType" minOccurs="0">
+                <annotation>
+                    <documentation>DESC_ACTN</documentation>
+                </annotation>
+            </element>
+            <element name="judgmentOrSettlementDesc" type="rqc:NarrativeType" minOccurs="0">
+                <annotation>
+                    <documentation>DESC_PYMT</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="MMPRReportType">
+        <sequence>
+            <element name="certification" type="rqc:CertificationType"/>
+            <element name="customerUse" type="co:CustomerUseType" minOccurs="0"/>
+            <choice>
+                <element name="report">
+                    <annotation>
+                        <documentation>Initial or Correction</documentation>
+                    </annotation>
+                    <complexType>
+                        <sequence>
+                            <element name="individual" type="rqs:QueryReportIndividualSubjectType">
+                                <annotation>
+                                    <documentation>Subject Information</documentation>
+                                </annotation>
+                            </element>
+                            <element name="entityReference" type="rqc:EntityReferenceType" minOccurs="0">
+                                <annotation>
+                                    <documentation>Entity Internal Report Reference</documentation>
+                                </annotation>
+                            </element>
+                            <element name="transaction" type="rqc:MmprTransactionCodeType">
+                                <annotation>
+                                    <documentation>Initial or Correction</documentation>
+                                </annotation>
+                            </element>
+                            <element name="previousDCN" type="rqc:DCNType" minOccurs="0">
+                                <annotation>
+                                    <documentation>Omit for Initial</documentation>
+                                </annotation>
+                            </element>
+                            <element name="informationReported" type="mmpr:MMPRActionDataType"/>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element name="void" type="rqc:VoidType"/>
+            </choice>
+        </sequence>
+    </complexType>
+    <complexType name="MMPRSubmissionFileType">
+        <sequence>
+            <element name="submitter" type="rqc:HeaderType"/>
+            <element name="submission" type="mmpr:MMPRReportType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="MMPRSubmission" type="mmpr:MMPRSubmissionFileType"/>
+</schema>

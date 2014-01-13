@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/Pds" xmlns:pds="http://www.npdb-hipdb.hrsa.gov/Pds" xmlns:rqc="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" xmlns:rqs="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" xmlns:ind="http://www.npdb-hipdb.hrsa.gov/Individual" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.01">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQuerySubject" schemaLocation="npdb-hipdb-report-query-subject.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/ReportQueryCommon" schemaLocation="npdb-hipdb-report-query-common.xsd"/>
+    <element name="pdsSubmission" type="pds:PdsSubmissionFileType"/>
+    <complexType name="PdsSubmissionFileType">
+        <sequence>
+            <element name="submitter" type="rqc:HeaderType"/>
+            <element name="certification" type="rqc:CertificationType"/>
+            <choice>
+                <element name="enroll" type="pds:PdsEnrollType"/>
+                <element name="update" type="pds:PdsUpdateType"/>
+                <element name="cancel" type="pds:PdsCancelType"/>
+                <element name="renew" type="pds:PdsRenewType"/>
+                <element name="status" type="pds:PdsStatusType"/>
+            </choice>
+        </sequence>
+    </complexType>
+    <complexType name="PdsEnrollType">
+        <sequence>
+            <element name="purpose" type="pds:PdsPurposeType"/>
+            <element name="payment" type="rqc:PaymentType" minOccurs="0"/>
+            <element name="individual" type="pds:PdsIndividualSubjectType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="PdsUpdateType">
+        <sequence>
+            <element name="individual" type="pds:PdsIndividualSubjectType"/>
+        </sequence>
+    </complexType>
+    <complexType name="PdsCancelType">
+        <sequence>
+            <element name="id" type="pds:PdsSubjectID" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="PdsRenewType">
+        <sequence>
+            <element name="payment" type="rqc:PaymentType" minOccurs="0"/>
+            <element name="includeReportsInResponse" type="boolean"/>
+            <element name="id" type="pds:PdsSubjectID" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="PdsStatusType">
+        <sequence>
+            <element name="includeReportsInResponse" type="boolean"/>
+            <element name="id" type="pds:PdsSubjectID" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="PdsIndividualSubjectType">
+        <complexContent>
+            <extension base="rqs:QueryIndividualSubjectType">
+                <sequence>
+                    <element name="department" type="token" minOccurs="0"/>
+                    <element name="databankSubjectID" type="pds:DataBankSubjectIDType" minOccurs="0"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="PdsSubjectID">
+        <sequence>
+            <element name="subjectID" type="co:subjectIDType" minOccurs="0"/>
+            <element name="databankSubjectID" type="pds:DataBankSubjectIDType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <simpleType name="DataBankSubjectIDType">
+        <annotation>
+            <documentation>Identification record created by the databanks for a subject.  This field may be used by the submitter to identify this subject</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="15"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="PdsPurposeType">
+        <restriction base="token">
+            <length value="1"/>
+            <enumeration value="P">
+                <annotation>
+                    <documentation>Privileging or Employment</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="R">
+                <annotation>
+                    <documentation>Professional Review</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="M">
+                <annotation>
+                    <documentation>In Lieu of the Mandatory Two-Year Review (For Use by Hospitals)</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="S">
+                <annotation>
+                    <documentation>Licensing</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="F">
+                <annotation>
+                    <documentation>Fraud and Abuse Investigation</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="G">
+                <annotation>
+                    <documentation>Certification to Participate in a Government Program</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="I">
+                <annotation>
+                    <documentation>Claims Processing</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+</schema>

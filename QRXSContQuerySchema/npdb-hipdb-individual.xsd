@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/Individual" xmlns:lic="http://www.npdb-hipdb.hrsa.gov/Licensure" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:org="http://www.npdb-hipdb.hrsa.gov/OrganizationCode" xmlns:ind="http://www.npdb-hipdb.hrsa.gov/Individual" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.03">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/OrganizationCode" schemaLocation="npdb-hipdb-organization-type-code.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Licensure" schemaLocation="npdb-hipdb-occupation-licensure.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Common" schemaLocation="npdb-hipdb-common.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+    <complexType name="individualSubjectType">
+        <sequence>
+            <element name="name" type="co:nameType"/>
+            <element name="otherName" type="co:nameType" minOccurs="0" maxOccurs="5"/>
+            <element name="gender" type="co:genderType" minOccurs="0"/>
+            <element name="birthdate" type="date" minOccurs="0"/>
+            <element name="organizationName" type="co:organizationNameType" minOccurs="0"/>
+            <element name="organizationType" type="co:organizationTypeCodeType" minOccurs="0"/>
+            <element name="workAddress" type="ad:addressType" minOccurs="0"/>
+            <element name="homeAddress" type="ad:addressType" minOccurs="0"/>
+            <element name="ssn" type="co:ssnType" minOccurs="0" maxOccurs="4"/>
+            <element name="itin" type="co:itinType" minOccurs="0" maxOccurs="4"/>
+            <element name="fein" type="co:feinType" minOccurs="0" maxOccurs="4"/>
+            <element name="npi" type="co:npiType" minOccurs="0" maxOccurs="4"/>
+            <element name="dea" type="co:deaType" minOccurs="0" maxOccurs="4"/>
+            <element name="upin" type="co:upinType" minOccurs="0" maxOccurs="4"/>
+            <element name="professionalSchool" type="co:professionalSchoolType" minOccurs="0" maxOccurs="5"/>
+            <element name="occupationAndLicensure" type="lic:licensureType" minOccurs="0"/>
+            <element name="otherOccupationAndLicensure" type="lic:licensureType" minOccurs="0" maxOccurs="59"/>
+            <element name="subjectID" type="co:subjectIDType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+</schema>

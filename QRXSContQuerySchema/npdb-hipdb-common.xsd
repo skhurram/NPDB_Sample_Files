@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<schema targetNamespace="http://www.npdb-hipdb.hrsa.gov/Common" xmlns:orgCd="http://www.npdb-hipdb.hrsa.gov/OrganizationCode" xmlns:ad="http://www.npdb-hipdb.hrsa.gov/Address" xmlns:co="http://www.npdb-hipdb.hrsa.gov/Common" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.06">
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/OrganizationCode" schemaLocation="npdb-hipdb-organization-type-code.xsd"/>
+    <import namespace="http://www.npdb-hipdb.hrsa.gov/Address" schemaLocation="npdb-hipdb-address.xsd"/>
+    <simpleType name="organizationNameType">
+      <restriction base="token">
+        <maxLength value="60" />
+      </restriction>
+    </simpleType>
+    <complexType name="nameType">
+        <sequence>
+            <element name="last">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="25"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="first">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="15"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="middle" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="15"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="suffix" minOccurs="0">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="4"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <simpleType name="ssnType">
+        <annotation>
+            <documentation>Social Security Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <pattern value="[\*\d]{3}(-)?[\*\d]{2}(-)?\d{4}"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="itinType">
+        <annotation>
+            <documentation>Individual Taxpayer Identification Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <pattern value="9\d{2}(-)?\d{2}(-)?\d{4}"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="deaType">
+        <annotation>
+            <documentation>Drug Enforcement Agency Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="12"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="feinType">
+        <annotation>
+            <documentation>Federal Employer Identification Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <length value="9"/>
+            <pattern value="\d*"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="npiType">
+        <annotation>
+            <documentation>National Provider Identifier Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="10"/>
+            <pattern value="\d*"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="upinType">
+        <annotation>
+            <documentation>Unique Physician Identification Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="6"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="cliaType">
+        <annotation>
+            <documentation>Clinical Laboratory Improvement Act Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="10"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="medicareProviderType">
+        <annotation>
+            <documentation>Medicare Provider/Supplier Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="15"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="fdaType">
+        <annotation>
+            <documentation>Food and Drug Administration Number</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="7"/>
+            <pattern value="\d*"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="subjectIDType">
+        <annotation>
+            <documentation>Identification record for use by the submitting entity.  This field may be used by the submitter to identify this subject</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="20"/>
+        </restriction>
+    </simpleType>
+    <complexType name="deceasedType">
+        <sequence>
+            <element name="isDeceased" type="co:YesNoUnknown"/>
+            <element name="date" type="date" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <complexType name="professionalSchoolType">
+        <sequence>
+            <element name="school">
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="200"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="graduationYear" type="gYear"/>
+        </sequence>
+    </complexType>
+    <complexType name="organizationTypeCodeType">
+        <sequence>
+            <element name="typeCode" type="orgCd:organizationCodeType"/>
+            <element name="description" minOccurs="0">
+                <annotation>
+                    <documentation>Specify description when type code is '999'</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="token">
+                        <maxLength value="100"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <simpleType name="genderType">
+        <restriction base="token">
+            <enumeration value="M"/>
+            <enumeration value="F"/>
+            <enumeration value="U"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="YesNoUnknown">
+        <annotation>
+            <documentation>Y, N, U</documentation>
+        </annotation>
+        <restriction base="token">
+            <enumeration value="Y">
+                <annotation>
+                    <documentation>Yes</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="N">
+                <annotation>
+                    <documentation>No</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="U">
+                <annotation>
+                    <documentation>Unknown</documentation>
+                </annotation>
+            </enumeration>
+        </restriction>
+    </simpleType>
+    <simpleType name="UserIDType">
+        <restriction base="token">
+            <maxLength value="14"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="DBIDType">
+        <restriction base="token">
+            <length value="15"/>
+            <pattern value="\d{15}"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="DBIDTypeMaskable">
+        <restriction base="token">
+            <length value="15"/>
+            <pattern value="[\*\d]{13}\d{2}"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="VendorIDType">
+        <restriction base="token">
+            <maxLength value="40"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="NoteType">
+        <restriction base="token">
+            <maxLength value="4000"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="CustomerUseType">
+        <annotation>
+            <documentation>CUSE</documentation>
+        </annotation>
+        <restriction base="token">
+            <maxLength value="20"/>
+        </restriction>
+    </simpleType>
+    <complexType name="Statutes">
+        <sequence>
+            <element name="titleIV" type="boolean"/>
+            <element name="section1921" type="boolean"/>
+            <element name="section1128e" type="boolean"/>
+        </sequence>
+    </complexType>
+</schema>
