@@ -9,7 +9,7 @@ How to test
 	
 Remove white spaces and encode into base64:
 
-[submission_file.text.xml](https://raw2.github.com/samsongz/NPDB_Sample_Files/master/QRXS_PDS_Enrollment_Sample_Files/submission_file.test.xml)
+[submission_file.test.xml](https://raw2.github.com/samsongz/NPDB_Sample_Files/master/QRXS_PDS_Enrollment_Sample_Files/submission_file.test.xml)
 
     $ cat submission_file.xml | tr -d '\t\r\n' | base64
     
